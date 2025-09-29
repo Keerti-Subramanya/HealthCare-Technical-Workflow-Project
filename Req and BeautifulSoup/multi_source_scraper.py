@@ -23,7 +23,7 @@ Setup:
    pip install requests beautifulsoup4 lxml pandas
 
 2. Set environment variables:
-   export CONTACT_EMAIL="yourname@yourdomain.com"
+   export CONTACT_EMAIL="keertisubramanyasm@gmail.com"
    export NCBI_API_KEY="your_ncbi_key_if_any"   # optional
 
 3. Run the scraper:
@@ -50,9 +50,13 @@ from bs4 import BeautifulSoup
 # ---------------------------------------------------
 # Global settings
 # ---------------------------------------------------
-CONTACT_EMAIL = os.getenv("CONTACT_EMAIL", "researcher@example.com")
+CONTACT_EMAIL = os.getenv("CONTACT_EMAIL")
 USER_AGENT = f"ResearchScraper/1.0 (mailto:{CONTACT_EMAIL})"
 DEFAULT_HEADERS = {"User-Agent": USER_AGENT}
+NCBI_API_KEY = os.getenv("NCBI_API_KEY")
+##CROSSREF_EMAIL = os.getenv("CROSSREF_EMAIL")
+##CLINICAL_EMAIL = os.getenv("CLINICAL_EMAIL")
+##WHO_API_KEY = os.getenv("WHO_API_KEY")
 
 logger = logging.getLogger("multi_scraper")
 logging.basicConfig(level=logging.INFO)
@@ -83,7 +87,7 @@ def can_fetch_url(url: str, user_agent: str = USER_AGENT) -> bool:
 
 
 def polite_get(url, params=None, max_retries=4, initial_backoff=1.0, timeout=30):
-    if not can_fetch_url(url):
+    if "ncbi.nlm.nih.gov" not in url and not can_fetch_url(url):
         raise PermissionError(f"robots.txt disallows fetching {url}")
 
     s = get_session()
@@ -223,16 +227,48 @@ def scrape_crossref(query: str, rows: int = 20) -> List[Dict]:
 # ClinicalTrials.gov
 # ---------------------------------------------------
 
+# def scrape_clinicaltrials(query: str, max_studies: int = 20) -> List[Dict]:
+#     url = "https://clinicaltrials.gov/api/query/study_fields"
+#     params = {"expr": query, "fields": ",".join(["NCTId", "BriefTitle", "Condition", "BriefSummary", "StartDate"]), "min_rnk": 1, "max_rnk": max_studies, "fmt": "json"}
+#     r = polite_get(url, params=params)
+#     studies = r.json()["StudyFieldsResponse"]["StudyFields"]
+#     out = []
+#     for s in studies:
+#         out.append({"nct": s.get("NCTId", [None])[0], "title": s.get("BriefTitle", [None])[0], "authors": [], "journal": "ClinicalTrials.gov", "year": s.get("StartDate", [""])[0].split()[-1], "doi": None, "url": f"https://clinicaltrials.gov/study/{s.get('NCTId',[None])[0]}", "abstract": s.get("BriefSummary", [None])[0]})
+#     return out
+
 def scrape_clinicaltrials(query: str, max_studies: int = 20) -> List[Dict]:
     url = "https://clinicaltrials.gov/api/query/study_fields"
-    params = {"expr": query, "fields": ",".join(["NCTId", "BriefTitle", "Condition", "BriefSummary", "StartDate"]), "min_rnk": 1, "max_rnk": max_studies, "fmt": "json"}
+    params = {
+        "expr": query,
+        "fields": ",".join(["NCTId", "BriefTitle", "Condition", "BriefSummary", "StartDate"]),
+        "min_rnk": 1,
+        "max_rnk": max_studies,
+        "fmt": "json"
+    }
     r = polite_get(url, params=params)
-    studies = r.json()["StudyFieldsResponse"]["StudyFields"]
+
+    # Check response
+    try:
+        data = r.json()
+    except json.JSONDecodeError:
+        logger.warning("ClinicalTrials.gov returned invalid JSON. Response text: %s", r.text)
+        return []
+
+    studies = data["StudyFieldsResponse"]["StudyFields"]
     out = []
     for s in studies:
-        out.append({"nct": s.get("NCTId", [None])[0], "title": s.get("BriefTitle", [None])[0], "authors": [], "journal": "ClinicalTrials.gov", "year": s.get("StartDate", [""])[0].split()[-1], "doi": None, "url": f"https://clinicaltrials.gov/study/{s.get('NCTId',[None])[0]}", "abstract": s.get("BriefSummary", [None])[0]})
+        out.append({
+            "nct": s.get("NCTId", [None])[0],
+            "title": s.get("BriefTitle", [None])[0],
+            "authors": [],
+            "journal": "ClinicalTrials.gov",
+            "year": s.get("StartDate", [""])[0].split()[-1],
+            "doi": None,
+            "url": f"https://clinicaltrials.gov/study/{s.get('NCTId',[None])[0]}",
+            "abstract": s.get("BriefSummary", [None])[0]
+        })
     return out
-
 
 # ---------------------------------------------------
 # WHO ICTRP (placeholder — not always API accessible)
