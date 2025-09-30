@@ -61,12 +61,15 @@ Given a search query (e.g., "large language models in clinical diagnosis"), this
     # main.py
     SEARCH_QUERY = "your new research topic here"
     ```
-
-2.  **Execute the Script**
+2. After doing it make sure to have the venv created and the pythonversion<=3.13, change the python version locally by using the pyenv commad which will create a local
+   python version and then execute it. Always ensure py3.11(recommended) version is set while creating venv file
+ 
+3.  **Execute the Script**
     Run the main script from your terminal:
     ```bash
-    python main.py
+    python multi-source-scrapping.py
     ```
+
 
 The script will start the CrewAI agents, and you will see the process logs in your terminal. Once completed, the final de-duplicated JSON will be printed and saved to `consolidated_results.json`.
 

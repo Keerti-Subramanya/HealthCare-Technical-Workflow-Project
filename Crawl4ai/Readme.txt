@@ -25,7 +25,7 @@ This project provides a polite, responsible, and legal way to scrape metadata fr
   ```
 
 ## How to Run
-1. Clone or download this repository.
+1. Clone or download this repository and Install dependencies then run the query
 2. Run the script with a search query:
    ```bash
    python multi_source_scraper.py "large language models"
@@ -36,6 +36,7 @@ This project provides a polite, responsible, and legal way to scrape metadata fr
    - `scraper_results.csv` → CSV version for spreadsheets
    - `scraper_results.xlsx` → Excel workbook
    - `scraper_results.db` → SQLite database for advanced queries
+5. There are 4 different versions of the crawl4ai please check them accordingly and which suits the best , we can use that itself
 
 ## Legal & Ethical Use
 - Use only for academic or research purposes.
