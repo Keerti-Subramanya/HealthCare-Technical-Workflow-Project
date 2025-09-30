@@ -61,3 +61,4 @@ This project provides a polite, responsible, and legal way to scrape metadata fr
   }
 ]
 ```
+PUBMED_API_KEY = "c2f307fc5acc4197325e5d9234ff271aa608"
