@@ -1,3 +1,6 @@
+
+# This version scrapes the data with limited field
+
 # """
 # multi_source_scraper.py
 
@@ -272,6 +275,8 @@
 #         sys.exit(1)
 
 
+
+## This Version Scarpes the more columns but have limitation with the date
 #!/usr/bin/env python3
 # """
 # crawl4ai_scraper_zotero.py
@@ -974,6 +979,10 @@
 #     if a.years: ty=datetime.now().year;fy=ty-a.years
 #     run(a.query,[s.strip() for s in a.sources.split(",")],a.limit,fy,ty)
 # 
+
+
+
+
 
 
 #!/usr/bin/env python3
