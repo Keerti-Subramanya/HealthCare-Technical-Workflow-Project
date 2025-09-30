@@ -1,0 +1,1 @@
+"# Python artifacts__pycache__/*.py[cod]*.so# Virtual environmentsvenv/Crewai/venv/# Environment and config.env*.env.python-version# Data and logs*.csv*.db*.log*.xlsx*.json*.ris# PDFs and other binaries*.pdf# Test outputs*.coverage*.pytest_cache/# IDE/editor files.vscode/.idea/*.swp*.sublime-workspace*.sublime-project# OS-specific.DS_StoreThumbs.db" 
