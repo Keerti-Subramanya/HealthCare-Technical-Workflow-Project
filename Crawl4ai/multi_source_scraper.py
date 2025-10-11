@@ -1,4 +1,4 @@
-
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    y   
 # This version scrapes the data with limited field
 
 # """
@@ -3842,7 +3842,614 @@ Below version is only for crawl4ai 0.7 version
 '''newer version
 you have stats involved here'''
 
-import argparse, json, re, sqlite3, logging, time, asyncio
+# import argparse, json, re, sqlite3, logging, time, asyncio
+# from datetime import datetime
+# import pandas as pd
+# import xml.etree.ElementTree as ET
+# import requests
+
+# # ---------------- CONFIG ----------------
+# CONTACT_EMAIL = "keertisubramanyasm@gmail.com"
+# USER_AGENT = f"MultiSourceScraper/1.0 (+{CONTACT_EMAIL})"
+# DB_PATH = "scraper_results.db"
+# JSON_OUTPUT = "scraper_results.json"
+# CSV_OUTPUT = "scraper_results.csv"
+# XLSX_OUTPUT = "scraper_results.xlsx"
+# MERGE_REPORT_FILE = "merge_report.txt"
+
+# PUBMED_API_KEY = "c2f307fc5acc4197325e5d9234ff271aa608"
+# CROSSREF_EMAIL = CONTACT_EMAIL
+# PUBMED_RATE_LIMIT = 0.34
+
+# logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
+# log = logging.getLogger("multi_source_scraper")
+
+# # ---------------- UTIL ----------------
+# def clean_text(t): 
+#     return re.sub(r"\s+"," ",re.sub(r"<[^>]+>","",t or "")).strip()
+
+# def normalize_title(t): 
+#     return re.sub(r"\s+"," ",re.sub(r"[^a-z0-9]+"," ",(t or "").lower())).strip()
+
+# # ---------------- PICO ----------------
+# PICO_KEYWORDS = {
+#     "interventions":["dexrazoxane","beta-blocker","ace inhibitor","arb","acei","arni","statin"],
+#     "exposures":["anthracycline","doxorubicin","epirubicin","trastuzumab"],
+#     "comparators":["placebo","usual care","control"],
+#     "study_designs":["randomized","rct","cohort","observational"]
+# }
+# ALL_PICO={w for l in PICO_KEYWORDS.values() for w in l}
+# PICO_PATTERN=re.compile("("+"|".join(map(re.escape,ALL_PICO))+")",re.I)
+
+# # ---------------- Zotero Header ----------------
+# ZOTERO_HEADER=[
+#  "Key","Item Type","Publication Year","Author","Title","Publication Title","ISBN","ISSN","DOI","Url",
+#  "Abstract Note","Date","Date Added","Date Modified","Access Date","Pages","Num Pages","Issue","Volume",
+#  "Number Of Volumes","Journal Abbreviation","Short Title","Series","Series Number","Series Text","Series Title",
+#  "Publisher","Place","Language","Rights","Type","Archive","Archive Location","Library Catalog","Call Number",
+#  "Extra","Meeting Name","Conference Name","Country"
+# ]
+# def zotero_template(): return {k:"" for k in ZOTERO_HEADER}
+
+# # ---------------- Storage ----------------
+# class Storage:
+#     def __init__(self,path=DB_PATH): 
+#         self.conn=sqlite3.connect(path)
+#         self.create()
+#     def create(self):
+#         self.conn.execute("CREATE TABLE IF NOT EXISTS recs(id INTEGER PRIMARY KEY, identifier TEXT UNIQUE, data TEXT)")
+#         self.conn.commit()
+#     def insert(self,ident,data):
+#         try:
+#             self.conn.execute("INSERT INTO recs(identifier,data) VALUES(?,?)",(ident,json.dumps(data)))
+#             self.conn.commit()
+#             return True
+#         except sqlite3.IntegrityError:
+#             return False
+#     def exists(self,identifiers):
+#         cur=self.conn.cursor()
+#         for ident in identifiers:
+#             if not ident: continue
+#             cur.execute("SELECT 1 FROM recs WHERE identifier=?",(ident,))
+#             if cur.fetchone(): 
+#                 return True
+#         return False
+#     def all(self):
+#         cur=self.conn.cursor();cur.execute("SELECT data FROM recs")
+#         return [json.loads(r[0]) for r in cur.fetchall()]
+#     def close(self): self.conn.close()
+
+# # ---------------- Fetcher ----------------
+# USE_CRAWL4AI = True
+# crawl4ai_fetcher = None
+
+# try:
+#     from crawl4ai import WebCrawler
+#     log.info("Using Crawl4AI WebCrawler (new version)")
+#     class Crawl4aiFetcher:
+#         def get(self,url,params=None):
+#             c = WebCrawler()
+#             res = c.get(url,params=params)
+#             return res.text if res else None
+#     crawl4ai_fetcher = Crawl4aiFetcher()
+# except ImportError:
+#     USE_CRAWL4AI = False
+#     log.warning("Crawl4AI not available, falling back to requests")
+
+# class Fetcher:
+#     def __init__(self):
+#         self.s=requests.Session()
+#         self.s.headers.update({"User-Agent":USER_AGENT})
+#     def get(self,url,params=None):
+#         if USE_CRAWL4AI and crawl4ai_fetcher:
+#             try:
+#                 return crawl4ai_fetcher.get(url,params)
+#             except Exception as e:
+#                 log.warning("Crawl4AI failed, fallback: %s",e)
+#         r=self.s.get(url,params=params)
+#         r.raise_for_status()
+#         return r.text
+
+# # ---------------- PubMed date parsing ----------------
+# def parse_pub_date(article):
+#     pub_date_el = article.find(".//PubDate")
+#     year, month, day = "", "01", "01"
+#     if pub_date_el is not None:
+#         y = pub_date_el.findtext("Year")
+#         m = pub_date_el.findtext("Month")
+#         d = pub_date_el.findtext("Day")
+#         medline = pub_date_el.findtext("MedlineDate")
+#         if y: year = y
+#         elif medline:
+#             m_year = re.search(r"\d{4}", medline)
+#             if m_year: year = m_year.group(0)
+#         if m:
+#             month = {
+#                 "Jan":"01","Feb":"02","Mar":"03","Apr":"04","May":"05","Jun":"06",
+#                 "Jul":"07","Aug":"08","Sep":"09","Oct":"10","Nov":"11","Dec":"12"
+#             }.get(m[:3],"01")
+#         if d: day=d
+#     if not year: year="Unknown"
+#     return year, f"{year}-{month}-{day}"
+
+# # ---------------- General Scraper ----------------
+# class GeneralScraper:
+#     def __init__(self, fetcher, store, merge_report=False):
+#         self.fetcher = fetcher
+#         self.store = store
+#         self.merge_report = merge_report
+#         self.merge_log = []
+#         self.added_count = 0
+#         self.skipped_count = 0
+
+#     def save_record(self, rec, identifiers):
+#         norm_title = normalize_title(rec.get("Title",""))
+#         doi = rec.get("DOI")
+#         pmid = rec.get("Key")
+#         all_ids = [i for i in [norm_title, doi, pmid] if i]
+
+#         if self.store.exists(all_ids):
+#             if self.merge_report:
+#                 self.merge_log.append(f"SKIPPED DUPLICATE: {norm_title or doi or pmid} from {rec.get('Url','')}")
+#             self.skipped_count += 1
+#             return False
+#         ident = norm_title or doi or pmid
+#         self.store.insert(ident, rec)
+#         self.added_count += 1
+#         return True
+
+#     def scrape(self, source, query, limit, from_year, to_year):
+#         if source == "pubmed":
+#             self.scrape_pubmed(query, limit, from_year, to_year)
+#         elif source == "crossref":
+#             self.scrape_crossref(query, limit, from_year, to_year)
+
+#     # ---------------- PubMed Scraper ----------------
+#     def scrape_pubmed(self, query, limit, from_year, to_year):
+#         log.info(f"Scraping PubMed for '{query}' from {from_year} to {to_year} ...")
+#         search="https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi"
+#         params={"db":"pubmed","term":query,"retmode":"json","retmax":100,
+#                 "datetype":"pdat",
+#                 "mindate":f"{from_year}/01/01" if from_year else None,
+#                 "maxdate":f"{to_year}/12/31" if to_year else None,
+#                 "api_key":PUBMED_API_KEY}
+#         retstart, fetched_ids=0, []
+#         while True:
+#             params["retstart"]=retstart
+#             data=json.loads(self.fetcher.get(search,params))
+#             ids=data.get("esearchresult",{}).get("idlist",[])
+#             if not ids: break
+#             fetched_ids.extend(ids)
+#             retstart+=len(ids)
+#             if limit and len(fetched_ids)>=limit: 
+#                 fetched_ids=fetched_ids[:limit];break
+#             if len(ids)<params["retmax"]: break
+#             time.sleep(PUBMED_RATE_LIMIT)
+#         if not fetched_ids: return
+
+#         fetch="https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi"
+#         for i in range(0,len(fetched_ids),200):
+#             chunk=fetched_ids[i:i+200]
+#             txt=self.fetcher.get(fetch,{"db":"pubmed","id":",".join(chunk),"retmode":"xml"})
+#             root=ET.fromstring(txt)
+#             for art in root.findall(".//PubmedArticle"):
+#                 pmid=art.findtext(".//PMID","")
+#                 title=art.findtext(".//ArticleTitle","")
+#                 abst=" ".join([el.text or "" for el in art.findall(".//Abstract/AbstractText")])
+#                 if not PICO_PATTERN.search(title+" "+abst): continue
+#                 found=[m.group(0) for m in PICO_PATTERN.finditer(title+" "+abst)]
+#                 authors=[f"{a.findtext('LastName','')}, {a.findtext('ForeName','')}" for a in art.findall(".//Author") if a.findtext("LastName")]
+#                 doi=""
+#                 for aid in art.findall(".//ArticleId"):
+#                     if aid.get("IdType")=="doi": doi=aid.text
+#                 pub_year,pub_date=parse_pub_date(art)
+#                 rec={"Key":pmid,"Item Type":"journalArticle","Title":title,"Abstract Note":abst,
+#                      "Author":"; ".join(authors),"Publication Title":art.findtext(".//Journal/Title",""),
+#                      "Journal Abbreviation":art.findtext(".//Journal/ISOAbbreviation",""),
+#                      "ISSN":art.findtext(".//Journal/ISSN",""),"Volume":art.findtext(".//JournalIssue/Volume",""),
+#                      "Issue":art.findtext(".//JournalIssue/Issue",""),"Pages":art.findtext(".//Pagination/MedlinePgn",""),
+#                      "Publication Year":pub_year,"Date":pub_date,"Language":art.findtext(".//Language",""),
+#                      "DOI":doi,"Url":f"https://pubmed.ncbi.nlm.nih.gov/{pmid}/",
+#                      "Country":art.findtext(".//MedlineJournalInfo/Country",""),
+#                      "Type":"; ".join([pt.text for pt in art.findall(".//PublicationType") if pt.text]),
+#                      "Extra":"PICO_keywords_found: "+", ".join(found)}
+#                 self.save_record(rec,[normalize_title(title), doi, pmid])
+
+#     # ---------------- CrossRef Scraper ----------------
+#     def scrape_crossref(self, query, limit, from_year, to_year):
+#         log.info(f"Scraping CrossRef for '{query}' from {from_year} to {to_year} ...")
+#         url="https://api.crossref.org/works"; fetched=0
+#         while fetched<limit:
+#             rows=min(1000,limit-fetched)
+#             filt=[]
+#             if from_year: filt.append(f"from-pub-date:{from_year}-01-01")
+#             if to_year: filt.append(f"until-pub-date:{to_year}-12-31")
+#             params={"query":query,"rows":rows,"offset":fetched,"mailto":CROSSREF_EMAIL}
+#             if filt: params["filter"]=",".join(filt)
+#             items=json.loads(self.fetcher.get(url,params)).get("message",{}).get("items",[])
+#             if not items: break
+#             for it in items:
+#                 title=it.get("title",[""])[0];abst=clean_text(it.get("abstract",""))
+#                 if not PICO_PATTERN.search(title+" "+abst): continue
+#                 found=[m.group(0) for m in PICO_PATTERN.finditer(title+" "+abst)]
+#                 authors=[f"{a.get('family','')}, {a.get('given','')}" for a in it.get("author",[])]
+#                 year=""; dp=it.get("issued",{}).get("date-parts",[])
+#                 if dp and dp[0]: year=str(dp[0][0])
+#                 rec={"Key":it.get("DOI"),"Item Type":it.get("type","journal-article"),"Title":title,"Abstract Note":abst,
+#                      "Author":"; ".join(authors),"Publication Title":(it.get("container-title") or [""])[0],
+#                      "Journal Abbreviation":(it.get("short-container-title") or [""])[0] if it.get("short-container-title") else "",
+#                      "ISSN":"; ".join(it.get("ISSN",[])),"Volume":it.get("volume",""),"Issue":it.get("issue",""),
+#                      "Pages":it.get("page",""),"Publication Year":year,"Date":"",
+#                      "Publisher":it.get("publisher",""),"Language":it.get("language",""),
+#                      "DOI":it.get("DOI",""),"Url":it.get("URL",""),"Meeting Name":it.get("event",{}).get("name",""),
+#                      "Conference Name":it.get("event",{}).get("name",""),
+#                      "Place":it.get("event",{}).get("location","") or it.get("publisher-location",""),
+#                      "Extra":"PICO_keywords_found: "+", ".join(found)}
+#                 self.save_record(rec,[normalize_title(title), it.get("DOI")])
+#             fetched+=len(items)
+#             if len(items)<rows: break
+
+#     def finalize(self):
+#         if self.merge_report and self.merge_log:
+#             with open(MERGE_REPORT_FILE,"w") as f:
+#                 f.write("Merge Report:\n")
+#                 for line in self.merge_log: f.write(line+"\n")
+#             log.info("Merge report saved to %s", MERGE_REPORT_FILE)
+#         log.info(f"Total new unique records added this run: {self.added_count}")
+#         log.info(f"Total duplicate/skipped records: {self.skipped_count}")
+
+# # ---------------- Export ----------------
+# def export(recs):
+#     df=pd.DataFrame([{**zotero_template(),**r} for r in recs],columns=ZOTERO_HEADER)
+#     df.to_csv(CSV_OUTPUT,index=False,encoding="utf-8")
+#     df.to_excel(XLSX_OUTPUT,index=False,engine="openpyxl")
+#     with open(JSON_OUTPUT,"w",encoding="utf-8") as f: json.dump(recs,f,ensure_ascii=False,indent=2)
+#     log.info("Exported %d records",len(recs))
+
+# # ---------------- Run ----------------
+# def run(query,sources,limit,from_year,to_year,merge_report=False):
+#     store=Storage();fetcher=Fetcher();scraper=GeneralScraper(fetcher,store,merge_report)
+#     for src in sources: scraper.scrape(src,query,limit,from_year,to_year)
+#     recs=store.all();export(recs);scraper.finalize();store.close()
+
+# if __name__=="__main__":
+#     p=argparse.ArgumentParser()
+#     p.add_argument("--query",required=True)
+#     p.add_argument("--sources",default="pubmed,crossref")
+#     p.add_argument("--limit",type=int,default=20)
+#     p.add_argument("--from_year",type=int)
+#     p.add_argument("--to_year",type=int)
+#     p.add_argument("--years",type=int)
+#     p.add_argument("--merge-report",action="store_true",help="Generate merge report for duplicates")
+#     a=p.parse_args()
+#     fy,ty=a.from_year,a.to_year
+#     if a.years: 
+#         ty=datetime.now().year
+#         fy=ty-a.years+1
+#     run(a.query,[s.strip() for s in a.sources.split(",")],a.limit,fy,ty,a.merge_report)
+
+''' this is new enhanced code which gives the better quality scarpping
+gives population boolean value but working fine '''
+
+# import argparse, json, re, sqlite3, logging, time, asyncio
+# from datetime import datetime
+# import pandas as pd
+# import xml.etree.ElementTree as ET
+# import requests
+
+# # ---------------- CONFIG ----------------
+# CONTACT_EMAIL = "keertisubramanyasm@gmail.com"
+# USER_AGENT = f"MultiSourceScraper/1.0 (+{CONTACT_EMAIL})"
+# DB_PATH = "scraper_results.db"
+# JSON_OUTPUT = "scraper_results.json"
+# CSV_OUTPUT = "scraper_results.csv"
+# XLSX_OUTPUT = "scraper_results.xlsx"
+# MERGE_REPORT_FILE = "merge_report.txt"
+
+# PUBMED_API_KEY = "c2f307fc5acc4197325e5d9234ff271aa608"
+# CROSSREF_EMAIL = CONTACT_EMAIL
+# PUBMED_RATE_LIMIT = 0.34
+
+# logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
+# log = logging.getLogger("multi_source_scraper")
+
+# # ---------------- UTIL ----------------
+# def clean_text(t):
+#     return re.sub(r"\s+"," ",re.sub(r"<[^>]+>","",t or "")).strip()
+
+# def normalize_title(t):
+#     return re.sub(r"\s+"," ",re.sub(r"[^a-z0-9]+"," ",(t or "").lower())).strip()
+
+# # ---------------- PICO ----------------
+# PICO_KEYWORDS = {
+#     "population": ["adult", "human"],
+#     "exposures": [
+#         "anthracycline", "doxorubicin", "daunorubicin", "epirubicin",
+#         "idarubicin", "trastuzumab", "herceptin"
+#     ],
+#     "interventions": [
+#         "dexrazoxane", "ICRF-187",
+#         "beta blocker", "carvedilol", "nebivolol", "bisoprolol", "metoprolol",
+#         "ACE inhibitor", "enalapril", "lisinopril", "ramipril", "perindopril",
+#         "ARB", "losartan", "valsartan", "candesartan",
+#         "ARNI", "sacubitril and valsartan", "entresto", "sacubitril",
+#         "statin", "atorvastatin", "rosuvastatin", "pravastatin",
+#         "MRA", "spironolactone", "eplerenone", "Aldactone",
+#         "SGLT2 inhibitor", "dapagliflozin", "empagliflozin", "canagliflozin", "ertugliflozin"
+#     ]
+# }
+
+# EXPOSURE_PATTERN = re.compile("(" + "|".join(map(re.escape, PICO_KEYWORDS["exposures"])) + ")", re.I)
+# INTERVENTION_PATTERN = re.compile("(" + "|".join(map(re.escape, PICO_KEYWORDS["interventions"])) + ")", re.I)
+# POPULATION_PATTERN = re.compile("(" + "|".join(map(re.escape, PICO_KEYWORDS["population"])) + ")", re.I)
+
+# # ---------------- Zotero Header ----------------
+# ZOTERO_HEADER = [
+#  "Key","Item Type","Publication Year","Author","Title","Publication Title","ISBN","ISSN","DOI","Url",
+#  "Abstract Note","Date","Date Added","Date Modified","Access Date","Pages","Num Pages","Issue","Volume",
+#  "Number Of Volumes","Journal Abbreviation","Short Title","Series","Series Number","Series Text","Series Title",
+#  "Publisher","Place","Language","Rights","Type","Archive","Archive Location","Library Catalog","Call Number",
+#  "Extra","Meeting Name","Conference Name","Country",
+#  "Exposure_Matched","Intervention_Matched","Population_Matched"
+# ]
+
+# def zotero_template():
+#     return {k:"" for k in ZOTERO_HEADER}
+
+# # ---------------- Storage ----------------
+# class Storage:
+#     def __init__(self,path=DB_PATH):
+#         self.conn=sqlite3.connect(path)
+#         self.create()
+#     def create(self):
+#         self.conn.execute("CREATE TABLE IF NOT EXISTS recs(id INTEGER PRIMARY KEY, identifier TEXT UNIQUE, data TEXT)")
+#         self.conn.commit()
+#     def insert(self,ident,data):
+#         try:
+#             self.conn.execute("INSERT INTO recs(identifier,data) VALUES(?,?)",(ident,json.dumps(data)))
+#             self.conn.commit()
+#             return True
+#         except sqlite3.IntegrityError:
+#             return False
+#     def exists(self,identifiers):
+#         cur=self.conn.cursor()
+#         for ident in identifiers:
+#             if not ident: continue
+#             cur.execute("SELECT 1 FROM recs WHERE identifier=?",(ident,))
+#             if cur.fetchone():
+#                 return True
+#         return False
+#     def all(self):
+#         cur=self.conn.cursor();cur.execute("SELECT data FROM recs")
+#         return [json.loads(r[0]) for r in cur.fetchall()]
+#     def close(self): self.conn.close()
+
+# # ---------------- Fetcher ----------------
+# USE_CRAWL4AI = True
+# crawl4ai_fetcher = None
+# try:
+#     from crawl4ai import WebCrawler
+#     log.info("Using Crawl4AI WebCrawler (new version)")
+#     class Crawl4aiFetcher:
+#         def get(self,url,params=None):
+#             c = WebCrawler()
+#             res = c.get(url,params=params)
+#             return res.text if res else None
+#     crawl4ai_fetcher = Crawl4aiFetcher()
+# except ImportError:
+#     USE_CRAWL4AI = False
+#     log.warning("Crawl4AI not available, falling back to requests")
+
+# class Fetcher:
+#     def __init__(self):
+#         self.s=requests.Session()
+#         self.s.headers.update({"User-Agent":USER_AGENT})
+#     def get(self,url,params=None):
+#         if USE_CRAWL4AI and crawl4ai_fetcher:
+#             try:
+#                 return crawl4ai_fetcher.get(url,params)
+#             except Exception as e:
+#                 log.warning("Crawl4AI failed, fallback: %s",e)
+#         r=self.s.get(url,params=params)
+#         r.raise_for_status()
+#         return r.text
+
+# # ---------------- PubMed date parsing ----------------
+# def parse_pub_date(article):
+#     pub_date_el = article.find(".//PubDate")
+#     year, month, day = "", "01", "01"
+#     if pub_date_el is not None:
+#         y = pub_date_el.findtext("Year")
+#         m = pub_date_el.findtext("Month")
+#         d = pub_date_el.findtext("Day")
+#         medline = pub_date_el.findtext("MedlineDate")
+#         if y: year = y
+#         elif medline:
+#             m_year = re.search(r"\d{4}", medline)
+#             if m_year: year = m_year.group(0)
+#         if m:
+#             month = {
+#                 "Jan":"01","Feb":"02","Mar":"03","Apr":"04","May":"05","Jun":"06",
+#                 "Jul":"07","Aug":"08","Sep":"09","Oct":"10","Nov":"11","Dec":"12"
+#             }.get(m[:3],"01")
+#         if d: day=d
+#     if not year: year="Unknown"
+#     return year, f"{year}-{month}-{day}"
+
+# # ---------------- General Scraper ----------------
+# class GeneralScraper:
+#     def __init__(self, fetcher, store, merge_report=False):
+#         self.fetcher = fetcher
+#         self.store = store
+#         self.merge_report = merge_report
+#         self.merge_log = []
+#         self.added_count = 0
+#         self.skipped_count = 0
+
+#     def save_record(self, rec, identifiers):
+#         norm_title = normalize_title(rec.get("Title",""))
+#         doi = rec.get("DOI")
+#         pmid = rec.get("Key")
+#         all_ids = [i for i in [norm_title, doi, pmid] if i]
+#         if self.store.exists(all_ids):
+#             if self.merge_report:
+#                 self.merge_log.append(f"SKIPPED DUPLICATE: {norm_title or doi or pmid} from {rec.get('Url','')}")
+#             self.skipped_count += 1
+#             return False
+#         ident = norm_title or doi or pmid
+#         self.store.insert(ident, rec)
+#         self.added_count += 1
+#         return True
+
+#     def scrape(self, source, query, limit, from_year, to_year):
+#         if source == "pubmed":
+#             self.scrape_pubmed(query, limit, from_year, to_year)
+#         elif source == "crossref":
+#             self.scrape_crossref(query, limit, from_year, to_year)
+
+#     # ---------------- PubMed Scraper ----------------
+#     def scrape_pubmed(self, query, limit, from_year, to_year):
+#         log.info(f"Scraping PubMed for '{query}' from {from_year} to {to_year} ...")
+#         search="https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi"
+#         params={"db":"pubmed","term":query,"retmode":"json","retmax":100,
+#                 "datetype":"pdat",
+#                 "mindate":f"{from_year}/01/01" if from_year else None,
+#                 "maxdate":f"{to_year}/12/31" if to_year else None,
+#                 "api_key":PUBMED_API_KEY}
+#         retstart, fetched_ids=0, []
+#         while True:
+#             params["retstart"]=retstart
+#             data=json.loads(self.fetcher.get(search,params))
+#             ids=data.get("esearchresult",{}).get("idlist",[])
+#             if not ids: break
+#             fetched_ids.extend(ids)
+#             retstart+=len(ids)
+#             if limit and len(fetched_ids)>=limit:
+#                 fetched_ids=fetched_ids[:limit];break
+#             if len(ids)<params["retmax"]: break
+#             time.sleep(PUBMED_RATE_LIMIT)
+#         if not fetched_ids: return
+
+#         fetch="https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi"
+#         for i in range(0,len(fetched_ids),200):
+#             chunk=fetched_ids[i:i+200]
+#             txt=self.fetcher.get(fetch,{"db":"pubmed","id":",".join(chunk),"retmode":"xml"})
+#             root=ET.fromstring(txt)
+#             for art in root.findall(".//PubmedArticle"):
+#                 pmid=art.findtext(".//PMID","")
+#                 title=art.findtext(".//ArticleTitle","")
+#                 abst=" ".join([el.text or "" for el in art.findall(".//Abstract/AbstractText")])
+#                 text = (title + " " + abst).lower()
+
+#                 if not (EXPOSURE_PATTERN.search(text) and INTERVENTION_PATTERN.search(text)):
+#                     continue
+#                 found_exposures = [m.group(0) for m in EXPOSURE_PATTERN.finditer(text)]
+#                 found_interventions = [m.group(0) for m in INTERVENTION_PATTERN.finditer(text)]
+#                 found_population = [m.group(0) for m in POPULATION_PATTERN.finditer(text)]
+#                 pop_flag = "Yes" if found_population else "No"
+
+#                 authors=[f"{a.findtext('LastName','')}, {a.findtext('ForeName','')}" for a in art.findall(".//Author") if a.findtext("LastName")]
+#                 doi=""
+#                 for aid in art.findall(".//ArticleId"):
+#                     if aid.get("IdType")=="doi": doi=aid.text
+#                 pub_year,pub_date=parse_pub_date(art)
+#                 rec={"Key":pmid,"Item Type":"journalArticle","Title":title,"Abstract Note":abst,
+#                      "Author":"; ".join(authors),"Publication Title":art.findtext(".//Journal/Title",""),
+#                      "Journal Abbreviation":art.findtext(".//Journal/ISOAbbreviation",""),
+#                      "ISSN":art.findtext(".//Journal/ISSN",""),"Volume":art.findtext(".//JournalIssue/Volume",""),
+#                      "Issue":art.findtext(".//JournalIssue/Issue",""),"Pages":art.findtext(".//Pagination/MedlinePgn",""),
+#                      "Publication Year":pub_year,"Date":pub_date,"Language":art.findtext(".//Language",""),
+#                      "DOI":doi,"Url":f"https://pubmed.ncbi.nlm.nih.gov/{pmid}/",
+#                      "Country":art.findtext(".//MedlineJournalInfo/Country",""),
+#                      "Type":"; ".join([pt.text for pt in art.findall(".//PublicationType") if pt.text]),
+#                      "Exposure_Matched":", ".join(set(found_exposures)),
+#                      "Intervention_Matched":", ".join(set(found_interventions)),
+#                      "Population_Matched":pop_flag,
+#                      "Extra":f"PICO found -> Exposure: {', '.join(set(found_exposures))}; Intervention: {', '.join(set(found_interventions))}; Population: {pop_flag}"}
+#                 self.save_record(rec,[normalize_title(title), doi, pmid])
+
+#     # ---------------- CrossRef Scraper ----------------
+#     def scrape_crossref(self, query, limit, from_year, to_year):
+#         log.info(f"Scraping CrossRef for '{query}' from {from_year} to {to_year} ...")
+#         url="https://api.crossref.org/works"; fetched=0
+#         while fetched<limit:
+#             rows=min(1000,limit-fetched)
+#             filt=[]
+#             if from_year: filt.append(f"from-pub-date:{from_year}-01-01")
+#             if to_year: filt.append(f"until-pub-date:{to_year}-12-31")
+#             params={"query":query,"rows":rows,"offset":fetched,"mailto":CROSSREF_EMAIL}
+#             if filt: params["filter"]=",".join(filt)
+#             items=json.loads(self.fetcher.get(url,params)).get("message",{}).get("items",[])
+#             if not items: break
+#             for it in items:
+#                 title=it.get("title",[""])[0];abst=clean_text(it.get("abstract",""))
+#                 text = (title + " " + abst).lower()
+
+#                 if not (EXPOSURE_PATTERN.search(text) and INTERVENTION_PATTERN.search(text)):
+#                     continue
+#                 found_exposures = [m.group(0) for m in EXPOSURE_PATTERN.finditer(text)]
+#                 found_interventions = [m.group(0) for m in INTERVENTION_PATTERN.finditer(text)]
+#                 found_population = [m.group(0) for m in POPULATION_PATTERN.finditer(text)]
+#                 pop_flag = "Yes" if found_population else "No"
+
+#                 authors=[f"{a.get('family','')}, {a.get('given','')}" for a in it.get("author",[])]
+#                 year=""; dp=it.get("issued",{}).get("date-parts",[])
+#                 if dp and dp[0]: year=str(dp[0][0])
+#                 rec={"Key":it.get("DOI"),"Item Type":it.get("type","journal-article"),"Title":title,"Abstract Note":abst,
+#                      "Author":"; ".join(authors),"Publication Title":(it.get("container-title") or [""])[0],
+#                      "Journal Abbreviation":(it.get("short-container-title") or [""])[0] if it.get("short-container-title") else "",
+#                      "ISSN":"; ".join(it.get("ISSN",[])),"Volume":it.get("volume",""),"Issue":it.get("issue",""),
+#                      "Pages":it.get("page",""),"Publication Year":year,"Date":"",
+#                      "Publisher":it.get("publisher",""),"Language":it.get("language",""),
+#                      "DOI":it.get("DOI",""),"Url":it.get("URL",""),"Meeting Name":it.get("event",{}).get("name",""),
+#                      "Conference Name":it.get("event",{}).get("name",""),
+#                      "Place":it.get("event",{}).get("location","") or it.get("publisher-location",""),
+#                      "Exposure_Matched":", ".join(set(found_exposures)),
+#                      "Intervention_Matched":", ".join(set(found_interventions)),
+#                      "Population_Matched":pop_flag,
+#                      "Extra":f"PICO found -> Exposure: {', '.join(set(found_exposures))}; Intervention: {', '.join(set(found_interventions))}; Population: {pop_flag}"}
+#                 self.save_record(rec,[normalize_title(title), it.get("DOI")])
+#             fetched+=len(items)
+#             if len(items)<rows: break
+
+#     def finalize(self):
+#         if self.merge_report and self.merge_log:
+#             with open(MERGE_REPORT_FILE,"w") as f:
+#                 f.write("Merge Report:\n")
+#                 for line in self.merge_log: f.write(line+"\n")
+#             log.info("Merge report saved to %s", MERGE_REPORT_FILE)
+#         log.info(f"Total new unique records added this run: {self.added_count}")
+#         log.info(f"Total duplicate/skipped records: {self.skipped_count}")
+
+# # ---------------- Export ----------------
+# def export(recs):
+#     df=pd.DataFrame([{**zotero_template(),**r} for r in recs],columns=ZOTERO_HEADER)
+#     df.to_csv(CSV_OUTPUT,index=False,encoding="utf-8")
+#     df.to_excel(XLSX_OUTPUT,index=False,engine="openpyxl")
+#     with open(JSON_OUTPUT,"w",encoding="utf-8") as f: json.dump(recs,f,ensure_ascii=False,indent=2)
+#     log.info("Exported %d records",len(recs))
+
+# # ---------------- Run ----------------
+# def run(query,sources,limit,from_year,to_year,merge_report=False):
+#     store=Storage();fetcher=Fetcher();scraper=GeneralScraper(fetcher,store,merge_report)
+#     for src in sources: scraper.scrape(src,query,limit,from_year,to_year)
+#     recs=store.all();export(recs);scraper.finalize();store.close()
+
+# if __name__=="__main__":
+#     p=argparse.ArgumentParser()
+#     p.add_argument("--query",required=True)
+#     p.add_argument("--sources",default="pubmed,crossref")
+#     p.add_argument("--limit",type=int,default=20)
+#     p.add_argument("--from_year",type=int)
+#     p.add_argument("--to_year",type=int)
+#     p.add_argument("--merge_report",action="store_true")
+#     a=p.parse_args()
+#     run(a.query,a.sources.split(","),a.limit,a.from_year,a.to_year,a.merge_report)
+
+
+
+
+import argparse, json, re, sqlite3, logging, time
 from datetime import datetime
 import pandas as pd
 import xml.etree.ElementTree as ET
@@ -3865,35 +4472,51 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(mess
 log = logging.getLogger("multi_source_scraper")
 
 # ---------------- UTIL ----------------
-def clean_text(t): 
+def clean_text(t):
     return re.sub(r"\s+"," ",re.sub(r"<[^>]+>","",t or "")).strip()
 
-def normalize_title(t): 
+def normalize_title(t):
     return re.sub(r"\s+"," ",re.sub(r"[^a-z0-9]+"," ",(t or "").lower())).strip()
 
 # ---------------- PICO ----------------
 PICO_KEYWORDS = {
-    "interventions":["dexrazoxane","beta-blocker","ace inhibitor","arb","acei","arni","statin"],
-    "exposures":["anthracycline","doxorubicin","epirubicin","trastuzumab"],
-    "comparators":["placebo","usual care","control"],
-    "study_designs":["randomized","rct","cohort","observational"]
+    "population": ["adult", "human"],
+    "exposures": [
+        "anthracycline", "doxorubicin", "daunorubicin", "epirubicin",
+        "idarubicin", "trastuzumab", "herceptin"
+    ],
+    "interventions": [
+        "dexrazoxane", "ICRF-187",
+        "beta blocker", "carvedilol", "nebivolol", "bisoprolol", "metoprolol",
+        "ACE inhibitor", "enalapril", "lisinopril", "ramipril", "perindopril",
+        "ARB", "losartan", "valsartan", "candesartan",
+        "ARNI", "sacubitril and valsartan", "entresto", "sacubitril",
+        "statin", "atorvastatin", "rosuvastatin", "pravastatin",
+        "MRA", "spironolactone", "eplerenone", "Aldactone",
+        "SGLT2 inhibitor", "dapagliflozin", "empagliflozin", "canagliflozin", "ertugliflozin"
+    ]
 }
-ALL_PICO={w for l in PICO_KEYWORDS.values() for w in l}
-PICO_PATTERN=re.compile("("+"|".join(map(re.escape,ALL_PICO))+")",re.I)
+
+EXPOSURE_PATTERN = re.compile("(" + "|".join(map(re.escape, PICO_KEYWORDS["exposures"])) + ")", re.I)
+INTERVENTION_PATTERN = re.compile("(" + "|".join(map(re.escape, PICO_KEYWORDS["interventions"])) + ")", re.I)
+POPULATION_PATTERN = re.compile("(" + "|".join(map(re.escape, PICO_KEYWORDS["population"])) + ")", re.I)
 
 # ---------------- Zotero Header ----------------
-ZOTERO_HEADER=[
+ZOTERO_HEADER = [
  "Key","Item Type","Publication Year","Author","Title","Publication Title","ISBN","ISSN","DOI","Url",
  "Abstract Note","Date","Date Added","Date Modified","Access Date","Pages","Num Pages","Issue","Volume",
  "Number Of Volumes","Journal Abbreviation","Short Title","Series","Series Number","Series Text","Series Title",
  "Publisher","Place","Language","Rights","Type","Archive","Archive Location","Library Catalog","Call Number",
- "Extra","Meeting Name","Conference Name","Country"
+ "Extra","Meeting Name","Conference Name","Country",
+ "Exposure_Matched","Intervention_Matched","Population_Matched"
 ]
-def zotero_template(): return {k:"" for k in ZOTERO_HEADER}
+
+def zotero_template():
+    return {k:"" for k in ZOTERO_HEADER}
 
 # ---------------- Storage ----------------
 class Storage:
-    def __init__(self,path=DB_PATH): 
+    def __init__(self,path=DB_PATH):
         self.conn=sqlite3.connect(path)
         self.create()
     def create(self):
@@ -3911,7 +4534,7 @@ class Storage:
         for ident in identifiers:
             if not ident: continue
             cur.execute("SELECT 1 FROM recs WHERE identifier=?",(ident,))
-            if cur.fetchone(): 
+            if cur.fetchone():
                 return True
         return False
     def all(self):
@@ -3920,32 +4543,11 @@ class Storage:
     def close(self): self.conn.close()
 
 # ---------------- Fetcher ----------------
-USE_CRAWL4AI = True
-crawl4ai_fetcher = None
-
-try:
-    from crawl4ai import WebCrawler
-    log.info("Using Crawl4AI WebCrawler (new version)")
-    class Crawl4aiFetcher:
-        def get(self,url,params=None):
-            c = WebCrawler()
-            res = c.get(url,params=params)
-            return res.text if res else None
-    crawl4ai_fetcher = Crawl4aiFetcher()
-except ImportError:
-    USE_CRAWL4AI = False
-    log.warning("Crawl4AI not available, falling back to requests")
-
 class Fetcher:
     def __init__(self):
         self.s=requests.Session()
         self.s.headers.update({"User-Agent":USER_AGENT})
     def get(self,url,params=None):
-        if USE_CRAWL4AI and crawl4ai_fetcher:
-            try:
-                return crawl4ai_fetcher.get(url,params)
-            except Exception as e:
-                log.warning("Crawl4AI failed, fallback: %s",e)
         r=self.s.get(url,params=params)
         r.raise_for_status()
         return r.text
@@ -3982,27 +4584,38 @@ class GeneralScraper:
         self.added_count = 0
         self.skipped_count = 0
 
-    def save_record(self, rec, identifiers):
-        norm_title = normalize_title(rec.get("Title",""))
-        doi = rec.get("DOI")
-        pmid = rec.get("Key")
-        all_ids = [i for i in [norm_title, doi, pmid] if i]
+    def dedup_identifier(self, rec):
+        """Prioritize deduplication by Title > DOI > PMID"""
+        title_id = normalize_title(rec.get("Title",""))
+        doi = rec.get("DOI","")
+        pmid = rec.get("Key","")
+        return [title_id, doi, pmid]
 
-        if self.store.exists(all_ids):
+    def save_record(self, rec):
+        identifiers = self.dedup_identifier(rec)
+        title_id = identifiers[0]
+    
+    # Check if any identifier exists already
+        cur=self.store.conn.cursor()
+        cur.execute("SELECT data FROM recs WHERE identifier=? OR identifier=? OR identifier=?", (identifiers[0], identifiers[1], identifiers[2]))
+        row = cur.fetchone()
+    
+        if row:
             if self.merge_report:
-                self.merge_log.append(f"SKIPPED DUPLICATE: {norm_title or doi or pmid} from {rec.get('Url','')}")
+                existing = json.loads(row[0])
+                self.merge_log.append(
+                    f"SKIPPED DUPLICATE: '{rec.get('Title','')}' ({rec.get('DOI','')}) "
+                    f"matched existing '{existing.get('Title','')}' ({existing.get('DOI','')}) "
+                    f"from {rec.get('Url','')}"
+                )   
             self.skipped_count += 1
             return False
-        ident = norm_title or doi or pmid
+    
+        ident = title_id or identifiers[1] or identifiers[2]
         self.store.insert(ident, rec)
         self.added_count += 1
         return True
 
-    def scrape(self, source, query, limit, from_year, to_year):
-        if source == "pubmed":
-            self.scrape_pubmed(query, limit, from_year, to_year)
-        elif source == "crossref":
-            self.scrape_crossref(query, limit, from_year, to_year)
 
     # ---------------- PubMed Scraper ----------------
     def scrape_pubmed(self, query, limit, from_year, to_year):
@@ -4021,7 +4634,7 @@ class GeneralScraper:
             if not ids: break
             fetched_ids.extend(ids)
             retstart+=len(ids)
-            if limit and len(fetched_ids)>=limit: 
+            if limit and len(fetched_ids)>=limit:
                 fetched_ids=fetched_ids[:limit];break
             if len(ids)<params["retmax"]: break
             time.sleep(PUBMED_RATE_LIMIT)
@@ -4036,8 +4649,15 @@ class GeneralScraper:
                 pmid=art.findtext(".//PMID","")
                 title=art.findtext(".//ArticleTitle","")
                 abst=" ".join([el.text or "" for el in art.findall(".//Abstract/AbstractText")])
-                if not PICO_PATTERN.search(title+" "+abst): continue
-                found=[m.group(0) for m in PICO_PATTERN.finditer(title+" "+abst)]
+                text = (title + " " + abst).lower()
+
+                if not (EXPOSURE_PATTERN.search(text) and INTERVENTION_PATTERN.search(text)):
+                    continue
+                found_exposures = [m.group(0) for m in EXPOSURE_PATTERN.finditer(text)]
+                found_interventions = [m.group(0) for m in INTERVENTION_PATTERN.finditer(text)]
+                found_population = [m.group(0) for m in POPULATION_PATTERN.finditer(text)]
+                pop_flag = ", ".join(set(found_population)) if found_population else ""
+
                 authors=[f"{a.findtext('LastName','')}, {a.findtext('ForeName','')}" for a in art.findall(".//Author") if a.findtext("LastName")]
                 doi=""
                 for aid in art.findall(".//ArticleId"):
@@ -4052,8 +4672,11 @@ class GeneralScraper:
                      "DOI":doi,"Url":f"https://pubmed.ncbi.nlm.nih.gov/{pmid}/",
                      "Country":art.findtext(".//MedlineJournalInfo/Country",""),
                      "Type":"; ".join([pt.text for pt in art.findall(".//PublicationType") if pt.text]),
-                     "Extra":"PICO_keywords_found: "+", ".join(found)}
-                self.save_record(rec,[normalize_title(title), doi, pmid])
+                     "Exposure_Matched":", ".join(set(found_exposures)),
+                     "Intervention_Matched":", ".join(set(found_interventions)),
+                     "Population_Matched":pop_flag,
+                     "Extra":f"PICO -> Exposure: {', '.join(set(found_exposures))}; Intervention: {', '.join(set(found_interventions))}; Population: {pop_flag}"}
+                self.save_record(rec)
 
     # ---------------- CrossRef Scraper ----------------
     def scrape_crossref(self, query, limit, from_year, to_year):
@@ -4070,8 +4693,15 @@ class GeneralScraper:
             if not items: break
             for it in items:
                 title=it.get("title",[""])[0];abst=clean_text(it.get("abstract",""))
-                if not PICO_PATTERN.search(title+" "+abst): continue
-                found=[m.group(0) for m in PICO_PATTERN.finditer(title+" "+abst)]
+                text = (title + " " + abst).lower()
+
+                if not (EXPOSURE_PATTERN.search(text) and INTERVENTION_PATTERN.search(text)):
+                    continue
+                found_exposures = [m.group(0) for m in EXPOSURE_PATTERN.finditer(text)]
+                found_interventions = [m.group(0) for m in INTERVENTION_PATTERN.finditer(text)]
+                found_population = [m.group(0) for m in POPULATION_PATTERN.finditer(text)]
+                pop_flag = ", ".join(set(found_population)) if found_population else ""
+
                 authors=[f"{a.get('family','')}, {a.get('given','')}" for a in it.get("author",[])]
                 year=""; dp=it.get("issued",{}).get("date-parts",[])
                 if dp and dp[0]: year=str(dp[0][0])
@@ -4084,19 +4714,24 @@ class GeneralScraper:
                      "DOI":it.get("DOI",""),"Url":it.get("URL",""),"Meeting Name":it.get("event",{}).get("name",""),
                      "Conference Name":it.get("event",{}).get("name",""),
                      "Place":it.get("event",{}).get("location","") or it.get("publisher-location",""),
-                     "Extra":"PICO_keywords_found: "+", ".join(found)}
-                self.save_record(rec,[normalize_title(title), it.get("DOI")])
+                     "Exposure_Matched":", ".join(set(found_exposures)),
+                     "Intervention_Matched":", ".join(set(found_interventions)),
+                     "Population_Matched":pop_flag,
+                     "Extra":f"PICO -> Exposure: {', '.join(set(found_exposures))}; Intervention: {', '.join(set(found_interventions))}; Population: {pop_flag}"}
+                self.save_record(rec)
             fetched+=len(items)
             if len(items)<rows: break
 
     def finalize(self):
         if self.merge_report and self.merge_log:
-            with open(MERGE_REPORT_FILE,"w") as f:
+            with open(MERGE_REPORT_FILE,"w",encoding="utf-8") as f:
                 f.write("Merge Report:\n")
-                for line in self.merge_log: f.write(line+"\n")
+                for line in self.merge_log:
+                    f.write(line+"\n")
             log.info("Merge report saved to %s", MERGE_REPORT_FILE)
         log.info(f"Total new unique records added this run: {self.added_count}")
         log.info(f"Total duplicate/skipped records: {self.skipped_count}")
+
 
 # ---------------- Export ----------------
 def export(recs):
@@ -4109,7 +4744,9 @@ def export(recs):
 # ---------------- Run ----------------
 def run(query,sources,limit,from_year,to_year,merge_report=False):
     store=Storage();fetcher=Fetcher();scraper=GeneralScraper(fetcher,store,merge_report)
-    for src in sources: scraper.scrape(src,query,limit,from_year,to_year)
+    for src in sources:
+        if src.strip()=="pubmed": scraper.scrape_pubmed(query,limit,from_year,to_year)
+        elif src.strip()=="crossref": scraper.scrape_crossref(query,limit,from_year,to_year)
     recs=store.all();export(recs);scraper.finalize();store.close()
 
 if __name__=="__main__":
@@ -4119,11 +4756,6 @@ if __name__=="__main__":
     p.add_argument("--limit",type=int,default=20)
     p.add_argument("--from_year",type=int)
     p.add_argument("--to_year",type=int)
-    p.add_argument("--years",type=int)
-    p.add_argument("--merge-report",action="store_true",help="Generate merge report for duplicates")
+    p.add_argument("--merge_report",action="store_true")
     a=p.parse_args()
-    fy,ty=a.from_year,a.to_year
-    if a.years: 
-        ty=datetime.now().year
-        fy=ty-a.years+1
-    run(a.query,[s.strip() for s in a.sources.split(",")],a.limit,fy,ty,a.merge_report)
+    run(a.query,a.sources.split(","),a.limit,a.from_year,a.to_year,a.merge_report)
