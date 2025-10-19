@@ -1,0 +1,22 @@
+pandas==2.2.2
+pdfplumber==0.11.0
+spacy==3.7.4
+
+
+
+## Manually put this in the terminal and install
+# pip install numpy==1.26.4
+# pip install openpyxl==3.1.5
+# pip install pdfminer.six==20221228
+# pip install pytesseract Pillow
+#pip install spacy==3.7.4
+#python -m spacy download en_core_web_sm --direct
+
+numpy==1.26.4
+pandas==2.2.2
+openpyxl==3.1.5
+pdfplumber==0.11.0
+PyMuPDF==1.24.2
+
+fuzzywuzzy==0.18.0
+python-Levenshtein==0.25.0
