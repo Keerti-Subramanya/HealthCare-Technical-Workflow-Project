@@ -1,0 +1,21 @@
+[OK] Sacubitril/Valsartan and Prevention of Cardiac Dysfunction During Adjuvant Breast Cancer Therapy: The PRADA II Randomize | Year=2025 | DOI=10.1161/CIRCULATIONAHA.125.076616
+[OK] Utilization of Proteomic Measures for Early Detection of Drug Benefits and Adverse Effects. | Year=2025 | DOI=10.1002/jcph.70077
+[OK] Atorvastatin and Myocardial Extracellular Volume Expansion During Anthracycline-Based Chemotherapy. | Year=2025 | DOI=10.1007/s12170-020-00650-8
+[OK] Factors Associated With the Recovery of Left Ventricular Ejection Fraction in Patients With Anthracycline-Induced Left V | Year=2025 | DOI=10.33963/kp.15163
+[OK] Preventing Cardiac Damage in Patients Treated for Breast Cancer and Lymphoma: The PROACT Clinical Trial. | Year=2024 | DOI=10.1093/annonc/mdt182
+[OK] Subclinical cardiac damage monitoring in breast cancer patients treated with an anthracycline-based chemotherapy receivi | Year=2024 | DOI=10.1158/1538-7445.Sabcs22-pd8-03
+[OK] Possible protective effect of rosuvastatin in chemotherapy-induced cardiotoxicity in HER2 positive breast cancer patient | Year=2024 | DOI=10.1097/FJC.0b013e31804a5e34
+[OK] Effect of atorvastatin versus placebo on efficacy in patients with diffuse large B-cell lymphoma receiving R-CHOP. | Year=2024 | DOI=10.1038/sj.leu.2402476
+[OK] Evaluation of the Effect of Carvedilol in Preventing Right Ventricular Dysfunction in Breast Cancer Patients Receiving A | Year=2023 | DOI=10.4103/abr.abr_134_21
+[OK] The Role of Metoprolol and Enalapril in the Prevention of Doxorubicin-induced Cardiotoxicity in Lymphoma Patients. | Year=2019 | DOI=10.21873/anticanres.13769
+[OK] Carvedilol for Prevention of Chemotherapy-Related Cardiotoxicity: The CECCY Trial. | Year=2018 | DOI=10.1016/j.jacc.2018.02.049
+[OK] Effect of candesartan and metoprolol on myocardial tissue composition during anthracycline treatment: the PRADA trial. | Year=2018 | DOI=10.1093/ehjci/jex159
+[OK] Circulating miR-1 as a potential biomarker of doxorubicin-induced cardiotoxicity in breast cancer patients. | Year=2017 | DOI=10.18632/oncotarget.14355
+[OK] Prevention of cardiac dysfunction during adjuvant breast cancer therapy (PRADA): a 2 × 2 factorial, randomized, placebo- | Year=2016 | DOI=10.1093/eurheartj/ehw022
+[OK] Protective effects of nebivolol against anthracycline-induced cardiomyopathy: a randomized control study. | Year=2013 | DOI=10.1016/j.ijcard.2012.06.023
+[OK] Protective effect of carvedilol in cardiomyopathy caused by anthracyclines in patients suffering from breast cancer and  | Year=2011 | DOI=10.15420/ahhj.2011.9.2.95
+
+--- SUMMARY ---
+Total=16
+Passed=16
+Failed=0
