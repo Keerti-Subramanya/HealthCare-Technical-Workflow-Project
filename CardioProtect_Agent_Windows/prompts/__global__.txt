@@ -1,0 +1,17 @@
+Global Prompt Overrides (Applied After Sheet-Specific)
+-----------------------------------------------------
+
+Guidelines:
+- Output only valid JSON. No prose, no markdown.
+- Keep structure identical to the provided schema.
+- Preserve existing non-empty values. Only replace "NR", "", None, or "NA".
+- Keep all values as strings (even if numeric) unless specified otherwise in the schema.
+- When uncertain, leave "NR".
+
+Heuristics:
+- Prefer Methods/Results sections for quantitative values.
+- If the paper states totals and arms, infer per-arm N only when explicitly clear.
+- Do not add keys or rename columns.
+
+Constraints:
+- Output only valid JSON. Keep all schema columns. Leave 'NR' when not reported.

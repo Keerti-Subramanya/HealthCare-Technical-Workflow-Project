@@ -1,0 +1,59 @@
+
+openapi: 3.1.0
+info:
+  title: CardioProtect Extractor Tool
+  version: "1.0.0"
+servers:
+  - url: http://localhost:8000
+paths:
+  /health:
+    get:
+      operationId: health
+      responses:
+        '200': { description: ok }
+  /extract:
+    post:
+      operationId: extract
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                pdf_path: { type: string }
+                template_path: { type: string }
+                criteria_pdf_path: { type: string }
+                session_id: { type: string }
+      responses:
+        '200': { description: preview }
+  /refill:
+    post:
+      operationId: refill
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                pdf_path: { type: string }
+                template_path: { type: string }
+                criteria_pdf_path: { type: string }
+                session_id: { type: string }
+      responses:
+        '200': { description: preview }
+  /save:
+    post:
+      operationId: save
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                session_id: { type: string }
+                output_xlsx_path: { type: string }
+      responses:
+        '200': { description: saved }

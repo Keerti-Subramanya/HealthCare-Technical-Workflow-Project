@@ -1,0 +1,1188 @@
+
+================================================================================
+✅ SUCCESS (Attempt 1)
+Prompt (first 600 chars):
+You are a biomedical data extraction specialist. First, read the per-sheet instructions below. Then, using the criteria PDF, fill the data template. Reference PDF is 12885_2020_Article_7104.pdf.
+[OVERRIDES]
+Sheet: 1_Study_ID_Design
+Column guidance (fill missing only; preserve non-empty):
+- Study_ID (FirstAuthor_Year): Extract the value for 'Study_ID (FirstAuthor_Year)' from the PDF. If missing, use 'NR'.
+- PMID/DOI: Extract the value for 'PMID/DOI' from the PDF. If missing, use 'NR'.
+- Registry_ID: Extract the value for 'Registry_ID' from the PDF. If missing, use 'NR'.
+- Publication_Year: Extr
+
+Response (first 1200 chars):
+{
+  "1_Study_ID_Design": [
+    {
+      "Study_ID (FirstAuthor_Year)": "Shamai et al. 2020",
+      "PMID/DOI": "NR",
+      "Registry_ID": "NCT02818517",
+      "Publication_Year": "2020",
+      "Country": "Israel",
+      "Study_Design (RCT/Cluster-RCT/Crossover/Prospective Cohort/Retrospective Cohort/Case-Control)": "Observational study",
+      "Oncology_Setting (Adjuvant/Neoadjuvant/Metastatic)": "Metastatic",
+      "Cancer_Type (Breast/Lymphoma/Sarcoma/Other)": "Sarcoma",
+      "Anthracycline_Exposure (Yes/No)": "Yes",
+      "Trastuzumab_Exposure (Yes/No)": "NR",
+      "Comparator (Placebo/Usual Care/Other)": "None",
+      "Sample_Size_Total": "43",
+      "Arms (N)": "2",
+      "Followup_Median (months)": "NR",
+      "Followup_IQR_or_Range": "NR",
+      "Enrollment_Years": "2018",
+      "Funding (Industry/Non-industry/Mixed)": "Academic",
+      "COI_Declared (Yes/No)": "Yes",
+      "Protocol/PROSPERO/Trial_Registration": "Registered"
+    }
+  ]
+}
+================================================================================
+
+================================================================================
+✅ SUCCESS (Attempt 1)
+Prompt (first 600 chars):
+You are a biomedical data extraction specialist. First, read the per-sheet instructions below. Then, using the criteria PDF, fill the data template. Reference PDF is 12885_2020_Article_7104.pdf.
+[OVERRIDES]
+Sheet: 2_Eligibility_Baseline
+Column guidance (fill missing only; preserve non-empty):
+- Study_ID: Extract the value for 'Study_ID' from the PDF. If missing, use 'NR'.
+- Inclusion_Criteria_Summary: Extract the value for 'Inclusion_Criteria_Summary' from the PDF. If missing, use 'NR'.
+- Exclusion_Criteria_Summary: Extract the value for 'Exclusion_Criteria_Summary' from the PDF. If missing, u
+
+Response (first 1200 chars):
+{
+  "2_Eligibility_Baseline": [
+    {
+      "Study_ID": "NR",
+      "Inclusion_Criteria_Summary": "Patients with sarcoma evaluated in the cardio-oncology clinic at our institution.",
+      "Exclusion_Criteria_Summary": "NR",
+      "Mean_Age (years)": "NR",
+      "Age_SD": "NR",
+      "Female (%)": "NR",
+      "Baseline_LVEF (%)": "NR",
+      "Baseline_GLS (%)": "NR",
+      "Hypertension (%)": "NR",
+      "Diabetes (%)": "NR",
+      "CAD (%)": "NR",
+      "HF_History (%)": "NR",
+      "CKD (%)": "NR",
+      "Smoking (%)": "NR",
+      "Anthracycline_Cumulative_Dose_mg_per_m2_Mean": "NR",
+      "Dose_SD": "NR",
+      "Planned_Anthracycline_Type (Doxorubicin/Epirubicin/Idarubicin/Daunorubicin)": "NR",
+      "Planned_Anthracycline_Total_Dose_Category (<250/250-399/400-549/\u2265550 mg/m2)": "NR",
+      "Planned_Trastuzumab (Yes/No)": "NR",
+      "Planned_Radiation (Yes/No)": "NR",
+      "Left_Sided_Chest_RT (Yes/No)": "NR",
+      "HER2+ (%)": "NR",
+      "Anthracycline_Pretreated (Yes/No)": "NR",
+      "Cardio_Biomarkers_Baseline (hs-cTn/BNP/NT-proBNP)": "NR",
+      "Concomitant_Cancer_Tx (Taxanes/Platinum/Immunotherapy/etc.)": "Doxorubicin-based chemotherapy"
+    }
+  ]
+}
+================================================================================
+
+================================================================================
+✅ SUCCESS (Attempt 1)
+Prompt (first 600 chars):
+You are a biomedical data extraction specialist. First, read the per-sheet instructions below. Then, using the criteria PDF, fill the data template. Reference PDF is 12885_2020_Article_7104.pdf.
+[OVERRIDES]
+Sheet: 3_Intervention_Cardioprotectors
+Column guidance (fill missing only; preserve non-empty):
+- Study_ID: Extract the value for 'Study_ID' from the PDF. If missing, use 'NR'.
+- Arm_Name: Extract the value for 'Arm_Name' from the PDF. If missing, use 'NR'.
+- N_in_Arm: Extract the value for 'N_in_Arm' from the PDF. If missing, use 'NR'.
+- Cardioprotector_Class (Dexrazoxane/BB/ACEi/ARB/MRA/S
+
+Response (first 1200 chars):
+{
+  "3_Intervention_Cardioprotectors": [
+    {
+      "Study_ID": "NR",
+      "Arm_Name": "NR",
+      "N_in_Arm": "NR",
+      "Cardioprotector_Class (Dexrazoxane/BB/ACEi/ARB/MRA/Statin/Others)": "Dexrazoxane",
+      "Drug_Name": "Dexrazoxane",
+      "Dose_Regimen": "Given according to our practical use protocol; including patients treated with cumulative dose of Doxorubicin more than 300mg/m2, or from lower doses in case of pre-existing reduced LVEF.",
+      "Start_Timing (Before/During/After Chemo)": "During chemo",
+      "Duration (weeks)": "NR",
+      "Adherence_Measure": "NR",
+      "Crossovers (Yes/No/Details)": "NR",
+      "Co-interventions (Exercise/Monitoring/Other)": "Routine Left ventricle (LV) echocardiographic parameters included LV diameters, and LVEF [9]. Early trans-mitral flow velocity (E), late atrial contraction (A) velocity, deceleration time and early diastolic mitral annular velocity (septal and lateral e’) were measured in the apical 4-chamber view to provide an estimate of LV diastolic function [10].",
+      "Comparator_Details": "NR"
+    }
+  ]
+}
+================================================================================
+
+================================================================================
+✅ SUCCESS (Attempt 1)
+Prompt (first 600 chars):
+You are a biomedical data extraction specialist. First, read the per-sheet instructions below. Then, using the criteria PDF, fill the data template. Reference PDF is 12885_2020_Article_7104.pdf.
+[OVERRIDES]
+Sheet: 4_Cancer_Therapy_Exposure
+Column guidance (fill missing only; preserve non-empty):
+- Study_ID: Extract the value for 'Study_ID' from the PDF. If missing, use 'NR'.
+- Arm_Name: Extract the value for 'Arm_Name' from the PDF. If missing, use 'NR'.
+- Anthracycline_Type: Extract the value for 'Anthracycline_Type' from the PDF. If missing, use 'NR'.
+- Anthracycline_Planned_Cumulative_Dose_
+
+Response (first 1200 chars):
+{
+  "4_Cancer_Therapy_Exposure": [
+    {
+      "Study_ID": "NR",
+      "Arm_Name": "NR",
+      "Anthracycline_Type": "Doxorubicin",
+      "Anthracycline_Planned_Cumulative_Dose_mg_per_m2": "NR",
+      "Anthracycline_Actual_Cumulative_Dose_mg_per_m2": "NR",
+      "Number_of_Cycles": "NR",
+      "Dose_Density_Schedule": "q21days",
+      "Trastuzumab (Yes/No)": "NR",
+      "Trastuzumab_Duration (months)": "NR",
+      "Radiation (Yes/No)": "NR",
+      "Radiation_Fields (Left breast/chest wall/mediastinum/etc.)": "NR",
+      "RT_Dose (Gy)": "NR",
+      "Other_Chemo/Targeted_Tx": "Dexrazoxane",
+      "Treatment_Interruptions_or_Dose_Reductions (Yes/No/Reason)": "NR"
+    }
+  ]
+}
+================================================================================
+
+================================================================================
+✅ SUCCESS (Attempt 1)
+Prompt (first 600 chars):
+You are a biomedical data extraction specialist. First, read the per-sheet instructions below. Then, using the criteria PDF, fill the data template. Reference PDF is 12885_2020_Article_7104.pdf.
+[OVERRIDES]
+Sheet: 5_Imaging_Protocol
+Column guidance (fill missing only; preserve non-empty):
+- Study_ID: Extract the value for 'Study_ID' from the PDF. If missing, use 'NR'.
+- Modality (Echo/CMR/MUGA): Extract the value for 'Modality (Echo/CMR/MUGA)' from the PDF. If missing, use 'NR'.
+- Imaging_CoreLab (Yes/No): Extract the value for 'Imaging_CoreLab (Yes/No)' from the PDF. If missing, use 'NR'.
+- L
+
+Response (first 1200 chars):
+{
+  "5_Imaging_Protocol": [
+    {
+      "Study_ID": "NR",
+      "Modality (Echo/CMR/MUGA)": "NR",
+      "Imaging_CoreLab (Yes/No)": "NR",
+      "LVEF_Method (Simpson/Teichholz/3D/CMR)": "NR",
+      "GLS_Method/Vendor": "NR",
+      "Measurement_Timing (Baseline/Each cycle/3m/6m/12m/>12m)": "NR",
+      "Cardiotoxicity_Definition (e.g., LVEF drop ≥10% to <53%)": "LVEF reduction of >10%, to a value below 53%",
+      "Blinded_Assessment (Yes/No)": "NR"
+    }
+  ]
+}
+================================================================================
+
+================================================================================
+✅ SUCCESS (Attempt 1)
+Prompt (first 600 chars):
+You are a biomedical data extraction specialist. First, read the per-sheet instructions below. Then, using the criteria PDF, fill the data template. Reference PDF is 12885_2020_Article_7104.pdf.
+[OVERRIDES]
+Sheet: 6_Biomarkers_Monitoring
+Column guidance (fill missing only; preserve non-empty):
+- Study_ID: Extract the value for 'Study_ID' from the PDF. If missing, use 'NR'.
+- hs-cTn Assay: Extract the value for 'hs-cTn Assay' from the PDF. If missing, use 'NR'.
+- BNP/NT-proBNP Assay: Extract the value for 'BNP/NT-proBNP Assay' from the PDF. If missing, use 'NR'.
+- Other Biomarkers (CRP, ST2, Ga
+
+Response (first 1200 chars):
+{
+    "6_Biomarkers_Monitoring": [
+        {
+            "Study_ID": "NR",
+            "hs-cTn Assay": "NR",
+            "BNP/NT-proBNP Assay": "NR",
+            "Other Biomarkers (CRP, ST2, Gal-3)": "NR",
+            "Sampling_Timing (Per cycle/Monthly/etc.)": "NR",
+            "ECG_Monitoring (QTc/Arrhythmia)": "NR",
+            "Ambulatory_BP/Other Monitoring": "NR"
+        }
+    ]
+}
+================================================================================
+
+================================================================================
+✅ SUCCESS (Attempt 1)
+Prompt (first 600 chars):
+You are a biomedical data extraction specialist. First, read the per-sheet instructions below. Then, using the criteria PDF, fill the data template. Reference PDF is 12885_2020_Article_7104.pdf.
+[OVERRIDES]
+Sheet: 7_Outcomes_Definitions
+Column guidance (fill missing only; preserve non-empty):
+- Study_ID: Extract the value for 'Study_ID' from the PDF. If missing, use 'NR'.
+- Primary_Outcome: Extract the value for 'Primary_Outcome' from the PDF. If missing, use 'NR'.
+- Primary_Outcome_Definition: Extract the value for 'Primary_Outcome_Definition' from the PDF. If missing, use 'NR'.
+- LV_Dysfunct
+
+Response (first 1200 chars):
+{
+  "7_Outcomes_Definitions": [
+    {
+      "Study_ID": "NR",
+      "Primary_Outcome": "NR",
+      "Primary_Outcome_Definition": "NR",
+      "LV_Dysfunction_Definition": "Left ventricular ejection fraction (LVEF) reduction of >10%, to a value below 53%",
+      "Symptomatic_HF_Definition": "NR",
+      "Biomarker_Elevation_Definition": "NR",
+      "MACE_Definition": "NR",
+      "All-cause_Mortality_Definition": "Retrieved from the electronic records of the governmental population.",
+      "CV_Mortality_Definition": "NR",
+      "Cancer_Outcomes (ORR/pCR/PFS/DFS/OS)": "NR",
+      "Safety_AEs_Definition (CTCAE grade)": "Given according to our practical use protocol; including patients treated with cumulative dose of Doxorubicin more than 300mg/m2, or from lower doses in case of pre-existing reduced LVEF.",
+      "Outcome_Adjudication (Blinded/Committee/None)": "NR"
+    }
+  ]
+}
+================================================================================
+
+================================================================================
+✅ SUCCESS (Attempt 1)
+Prompt (first 600 chars):
+You are a biomedical data extraction specialist. First, read the per-sheet instructions below. Then, using the criteria PDF, fill the data template. Reference PDF is 12885_2020_Article_7104.pdf.
+[OVERRIDES]
+Sheet: 8_Outcome_Binary
+Column guidance (fill missing only; preserve non-empty):
+- Study_ID: Extract the value for 'Study_ID' from the PDF. If missing, use 'NR'.
+- Outcome_Name (e.g., LV Dysfunction, HF, MACE, Death): Extract the value for 'Outcome_Name (e.g., LV Dysfunction, HF, MACE, Death)' from the PDF. If missing, use 'NR'.
+- Timepoint (e.g., end-chemo, 6m, 12m): Extract the value for 
+
+Response (first 1200 chars):
+{
+  "8_Outcome_Binary": [
+    {
+      "Study_ID": "NR",
+      "Outcome_Name (e.g., LV Dysfunction, HF, MACE, Death)": "Death",
+      "Timepoint (e.g., end-chemo, 6m, 12m)": "Follow-up",
+      "Arm_Name": "CTRCD group vs. non-CTRCD group",
+      "Events": "2 (33%) patients died in the CTRCD group vs. 3 (8.1%) patients in the non-CTRCD group",
+      "Total": "43 consecutive patients",
+      "Analysis_Set (ITT/PP/Safety)": "Population used for analysis",
+      "Effect_Size_Reported (RR/OR/HR)": "NR",
+      "Adjusted (Yes/No)": "NR",
+      "Adjustment_Variables": "NR"
+    }
+  ]
+}
+================================================================================
+
+================================================================================
+✅ SUCCESS (Attempt 1)
+Prompt (first 600 chars):
+You are a biomedical data extraction specialist. First, read the per-sheet instructions below. Then, using the criteria PDF, fill the data template. Reference PDF is 12885_2020_Article_7104.pdf.
+[OVERRIDES]
+Sheet: 9_Outcome_Continuous
+Column guidance (fill missing only; preserve non-empty):
+- Study_ID: Extract the value for 'Study_ID' from the PDF. If missing, use 'NR'.
+- Outcome_Name (e.g., LVEF %, GLS %, Troponin, NT-proBNP): Extract the value for 'Outcome_Name (e.g., LVEF %, GLS %, Troponin, NT-proBNP)' from the PDF. If missing, use 'NR'.
+- Timepoint: Extract the value for 'Timepoint' from 
+
+Response (first 1200 chars):
+{
+  "9_Outcome_Continuous": [
+    {
+      "Study_ID": "NR",
+      "Outcome_Name (e.g., LVEF %, GLS %, Troponin, NT-proBNP)": "Elevated leftventricular end systolic diameter and reduced Global Longitudinal Strain",
+      "Timepoint": "Follow-up",
+      "Arm_Name": "CTRCD group vs. non-CTRCD group",
+      "Mean": "NR",
+      "SD": "NR",
+      "N": "43",
+      "Change_From_Baseline_Mean": "NR",
+      "Change_From_Baseline_SD": "NR",
+      "Imputation/Derivation_Details": "Echocardiography parameters may provide an early diagnosis of cardio-toxicity"
+    }
+  ]
+}
+================================================================================
+
+================================================================================
+✅ SUCCESS (Attempt 1)
+Prompt (first 600 chars):
+You are a biomedical data extraction specialist. First, read the per-sheet instructions below. Then, using the criteria PDF, fill the data template. Reference PDF is 12885_2020_Article_7104.pdf.
+[OVERRIDES]
+Sheet: 10_TimeToEvent
+Column guidance (fill missing only; preserve non-empty):
+- Study_ID: Extract the value for 'Study_ID' from the PDF. If missing, use 'NR'.
+- Outcome_Name (e.g., HF hospitalization, PFS, OS): Extract the value for 'Outcome_Name (e.g., HF hospitalization, PFS, OS)' from the PDF. If missing, use 'NR'.
+- Arm_Comparison: Extract the value for 'Arm_Comparison' from the PDF. I
+
+Response (first 1200 chars):
+{
+  "10_TimeToEvent": [
+    {
+      "Study_ID": "NR",
+      "Outcome_Name (e.g., HF hospitalization, PFS, OS)": "NR",
+      "Arm_Comparison": "NR",
+      "Effect_Size (HR)": "NR",
+      "Lower_CI": "NR",
+      "Upper_CI": "NR",
+      "P_value": "NR",
+      "Adjusted (Yes/No)": "NR",
+      "Adjustment_Variables": "NR",
+      "Extraction_Method (Direct/KM Digitized/Reported)": "NR"
+    }
+  ]
+}
+================================================================================
+
+================================================================================
+✅ SUCCESS (Attempt 1)
+Prompt (first 600 chars):
+You are a biomedical data extraction specialist. First, read the per-sheet instructions below. Then, using the criteria PDF, fill the data template. Reference PDF is 12885_2020_Article_7104.pdf.
+[OVERRIDES]
+Sheet: 11_Adverse_Events
+Column guidance (fill missing only; preserve non-empty):
+- Study_ID: Extract the value for 'Study_ID' from the PDF. If missing, use 'NR'.
+- Arm_Name: Extract the value for 'Arm_Name' from the PDF. If missing, use 'NR'.
+- AE_Name: Extract the value for 'AE_Name' from the PDF. If missing, use 'NR'.
+- Grade (CTCAE): Extract the value for 'Grade (CTCAE)' from the PDF. I
+
+Response (first 1200 chars):
+{
+  "11_Adverse_Events": [
+    {
+      "Study_ID": "NR",
+      "Arm_Name": "NR",
+      "AE_Name": "Cardio-toxicity",
+      "Grade (CTCAE)": "NR",
+      "Events": "6",
+      "Total": "43",
+      "Serious_AE (Yes/No)": "Yes",
+      "Led_to_Discontinuation (Yes/No)": "NR",
+      "Notes": "Cardio-toxicity among patients with sarcoma"
+    }
+  ]
+}
+================================================================================
+
+================================================================================
+✅ SUCCESS (Attempt 1)
+Prompt (first 600 chars):
+You are a biomedical data extraction specialist. First, read the per-sheet instructions below. Then, using the criteria PDF, fill the data template. Reference PDF is 12885_2020_Article_7104.pdf.
+[OVERRIDES]
+Sheet: 12_Subgroups_EffectModifiers
+Column guidance (fill missing only; preserve non-empty):
+- Study_ID: Extract the value for 'Study_ID' from the PDF. If missing, use 'NR'.
+- Pre-specified_Subgroups (e.g., age, sex, baseline LVEF, dose): Extract the value for 'Pre-specified_Subgroups (e.g., age, sex, baseline LVEF, dose)' from the PDF. If missing, use 'NR'.
+- Interaction_Test_Reported (Yes
+
+Response (first 1200 chars):
+{
+  "12_Subgroups_EffectModifiers": [
+    {
+      "Study_ID": "NR",
+      "Pre-specified_Subgroups (e.g., age, sex, baseline LVEF, dose)": "NR",
+      "Interaction_Test_Reported (Yes/No)": "NR",
+      "Interaction_P_value": "NR",
+      "Direction_of_Effect": "CTRCD is an important concern among patients with sarcoma, regardless of baseline risk factors.",
+      "Dose-Response/Exposure-Response Findings": "Elevated left ventricular end systolic diameter and reduced Global Longitudinal Strain were observed among the CTRCD group."
+    }
+  ]
+}
+================================================================================
+
+================================================================================
+✅ SUCCESS (Attempt 1)
+Prompt (first 600 chars):
+You are a biomedical data extraction specialist. First, read the per-sheet instructions below. Then, using the criteria PDF, fill the data template. Reference PDF is 12885_2020_Article_7104.pdf.
+[OVERRIDES]
+Sheet: 13_RiskOfBias_RoB2_RCTs
+Column guidance (fill missing only; preserve non-empty):
+- Study_ID: Extract the value for 'Study_ID' from the PDF. If missing, use 'NR'.
+- D1_Randomization_Process (Low/Some Concerns/High): Extract the value for 'D1_Randomization_Process (Low/Some Concerns/High)' from the PDF. If missing, use 'NR'.
+- D1_Notes: Extract the value for 'D1_Notes' from the PDF. If
+
+Response (first 1200 chars):
+{
+  "13_RiskOfBias_RoB2_RCTs": [
+    {
+      "Study_ID": "NR",
+      "D1_Randomization_Process (Low/Some Concerns/High)": "NR",
+      "D1_Notes": "Patients were enrolled and divided into two groups - CTRCD group vs. non-CTRCD group.",
+      "D2_Deviations_from_Intended_Interventions (Low/Some Concerns/High)": "NR",
+      "D2_Notes": "NR",
+      "D3_Missing_Outcome_Data (Low/Some Concerns/High)": "NR",
+      "D3_Notes": "NR",
+      "D4_Measurement_of_Outcome (Low/Some Concerns/High)": "NR",
+      "D4_Notes": "Echocardiography is the modality used most often to assess cardiac function among patients with cancer.",
+      "D5_Selection_of_Reported_Result (Low/Some Concerns/High)": "NR",
+      "D5_Notes": "NR",
+      "Overall_RoB (Low/Some Concerns/High)": "NR",
+      "RoB2_Supporting_Quotes": "The registry was approved by the local ethics committee and is registered in clinicaltrials.gov (Identifier: NCT02818517)."
+    }
+  ]
+}
+================================================================================
+
+================================================================================
+✅ SUCCESS (Attempt 1)
+Prompt (first 600 chars):
+You are a biomedical data extraction specialist. First, read the per-sheet instructions below. Then, using the criteria PDF, fill the data template. Reference PDF is 12885_2020_Article_7104.pdf.
+[OVERRIDES]
+Sheet: 14_RiskOfBias_ROBINSI_NRS
+Column guidance (fill missing only; preserve non-empty):
+- Study_ID: Extract the value for 'Study_ID' from the PDF. If missing, use 'NR'.
+- D1_Bias_due_to_Confounding (Low/Moderate/Serious/Critical/No Info): Extract the value for 'D1_Bias_due_to_Confounding (Low/Moderate/Serious/Critical/No Info)' from the PDF. If missing, use 'NR'.
+- D2_Bias_in_Selection_of
+
+Response (first 1200 chars):
+{
+"14_RiskOfBias_ROBINSI_NRS": [
+  {
+    "Study_ID": "NR",
+    "D1_Bias_due_to_Confounding (Low/Moderate/Serious/Critical/No Info)": "NR",
+    "D2_Bias_in_Selection_of_Participants": "NR",
+    "D3_Bias_in_Classification_of_Interventions": "NR",
+    "D4_Bias_due_to_Deviations_from_Intended_Interventions": "NR",
+    "D5_Bias_due_to_Missing_Data": "NR",
+    "D6_Bias_in_Measurement_of_Outcomes": "NR",
+    "D7_Bias_in_Selection_of_Reported_Result": "NR",
+    "Overall_RoB (Low/Moderate/Serious/Critical/No Info)": "NR",
+    "ROBINSI_Supporting_Notes": "NR"
+  }
+]
+}
+================================================================================
+
+================================================================================
+✅ SUCCESS (Attempt 1)
+Prompt (first 600 chars):
+You are a biomedical data extraction specialist. First, read the per-sheet instructions below. Then, using the criteria PDF, fill the data template. Reference PDF is 12885_2020_Article_7104.pdf.
+[OVERRIDES]
+Sheet: 15_GRADE_Per_Outcome
+Column guidance (fill missing only; preserve non-empty):
+- Outcome_Name: Extract the value for 'Outcome_Name' from the PDF. If missing, use 'NR'.
+- Population/Setting: Extract the value for 'Population/Setting' from the PDF. If missing, use 'NR'.
+- Comparator: Extract the value for 'Comparator' from the PDF. If missing, use 'NR'.
+- Study_Design (RCT/NRS/Mixed): E
+
+Response (first 1200 chars):
+{
+  "15_GRADE_Per_Outcome": [
+    {
+      "Outcome_Name": "NR",
+      "Population/Setting": "NR",
+      "Comparator": "NR",
+      "Study_Design (RCT/NRS/Mixed)": "NR",
+      "Risk_of_Bias (No serious/Serious/Very serious)": "NR",
+      "Inconsistency": "NR",
+      "Indirectness": "NR",
+      "Imprecision": "NR",
+      "Publication_Bias": "NR",
+      "Large_Effect (Upgrade)": "NR",
+      "Dose_Response (Upgrade)": "NR",
+      "All_Plausible_Confounding (Upgrade)": "NR",
+      "Overall_Certainty (High/Moderate/Low/Very low)": "NR",
+      "Key_Notes": "Patients with sarcoma are commonly exposed to high doses of anthracyclines, which can lead to cardio-toxicity. Echocardiography is the modality used most often to assess cardiac function among patients with cancer."
+    }
+  ]
+}
+================================================================================
+
+================================================================================
+✅ SUCCESS (Attempt 1)
+Prompt (first 600 chars):
+You are a biomedical data extraction specialist. First, read the per-sheet instructions below. Then, using the criteria PDF, fill the data template. Reference PDF is 12885_2020_Article_7104.pdf.
+[OVERRIDES]
+Sheet: 16_Derivations_Conversions
+Column guidance (fill missing only; preserve non-empty):
+- Study_ID: Extract the value for 'Study_ID' from the PDF. If missing, use 'NR'.
+- Outcome_Name: Extract the value for 'Outcome_Name' from the PDF. If missing, use 'NR'.
+- Timepoint: Extract the value for 'Timepoint' from the PDF. If missing, use 'NR'.
+- Original_Reported_Data: Extract the value for '
+
+Response (first 1200 chars):
+{
+  "16_Derivations_Conversions": [
+    {
+      "Study_ID": "NR",
+      "Outcome_Name": "Prevalence of CTRCD in patients diagnosed with sarcoma",
+      "Timepoint": "NR",
+      "Original_Reported_Data": "6 (14%) developed CTRCD among 43 consecutive patients",
+      "Derived_Metric (e.g., change SD via correlation)": "NR",
+      "Assumed_Correlation": "NR",
+      "Unit_Conversions": "NR",
+      "KM_Digitization_Details": "NR",
+      "Assumptions_Notes": "Patients with sarcoma are commonly exposed to high doses of ANT"
+    }
+  ]
+}
+================================================================================
+
+================================================================================
+✅ SUCCESS (Attempt 1)
+Prompt (first 600 chars):
+You are a biomedical data extraction specialist. First, read the per-sheet instructions below. Then, using the criteria PDF, fill the data template. Reference PDF is 12885_2020_Article_7104.pdf.
+[OVERRIDES]
+Sheet: 17_Notes_Queries
+Column guidance (fill missing only; preserve non-empty):
+- Study_ID: Extract the value for 'Study_ID' from the PDF. If missing, use 'NR'.
+- Contacted_Authors (Yes/No): Extract the value for 'Contacted_Authors (Yes/No)' from the PDF. If missing, use 'NR'.
+- Author_Response_Summary: Extract the value for 'Author_Response_Summary' from the PDF. If missing, use 'NR'.
+- D
+
+Response (first 1200 chars):
+{
+  "17_Notes_Queries": [
+    {
+      "Study_ID": "NR",
+      "Contacted_Authors (Yes/No)": "NR",
+      "Author_Response_Summary": "The objectives of the current study were to estimate the prevalence of CTRCD in patients diagnosed with sarcoma and to describe the baseline risk factors and echocardiography parameters among that population.",
+      "Data_Discrepancies/Queries": "None reported",
+      "Resolution_Status": "NR"
+    }
+  ]
+}
+================================================================================
+
+================================================================================
+✅ SUCCESS (Attempt 1)
+Prompt (first 600 chars):
+You are a biomedical data extraction specialist. First, read the per-sheet instructions below. Then, using the criteria PDF, fill the data template. Reference PDF is 12885_2020_Article_7104.pdf.
+[OVERRIDES]
+Sheet: 18_PRISMA_Screening_Log
+Column guidance (fill missing only; preserve non-empty):
+- Record_ID: Extract the value for 'Record_ID' from the PDF. If missing, use 'NR'.
+- Database: Extract the value for 'Database' from the PDF. If missing, use 'NR'.
+- Search_Date: Extract the value for 'Search_Date' from the PDF. If missing, use 'NR'.
+- Title: Extract the value for 'Title' from the PDF. I
+
+Response (first 1200 chars):
+{
+    "18_PRISMA_Screening_Log": [
+        {
+            "Record_ID": "NR",
+            "Database": "NR",
+            "Search_Date": "NR",
+            "Title": "CardioProtect meta-analysis project: Estimating the prevalence of cancer therapeutics-related cardiac dysfunction in patients with sarcoma.",
+            "Authors": "Shamai, et al.",
+            "Year": "2020",
+            "PMID/DOI": "NR",
+            "Include_at_Title/Abstract (Yes/No)": "NR",
+            "Include_at_FullText (Yes/No)": "NR",
+            "Exclude_Reason": "NR"
+        }
+    ]
+}
+================================================================================
+
+================================================================================
+✅ SUCCESS (Attempt 1)
+Prompt (first 600 chars):
+You are a biomedical data extraction specialist. First, read the per-sheet instructions below. Then, using the criteria PDF, fill the data template. Reference PDF is 12885_2020_Article_7104.pdf.
+[OVERRIDES]
+Sheet: 1_Study_ID_Design
+Column guidance (fill missing only; preserve non-empty):
+- Study_ID (FirstAuthor_Year): Extract the value for 'Study_ID (FirstAuthor_Year)' from the PDF. If missing, use 'NR'.
+- PMID/DOI: Extract the value for 'PMID/DOI' from the PDF. If missing, use 'NR'.
+- Registry_ID: Extract the value for 'Registry_ID' from the PDF. If missing, use 'NR'.
+- Publication_Year: Extr
+
+Response (first 1200 chars):
+{
+  "1_Study_ID_Design": [
+    {
+      "Study_ID (FirstAuthor_Year)": "Shamai et al. 2020",
+      "PMID/DOI": "NR",
+      "Registry_ID": "NCT02818517",
+      "Publication_Year": "2020",
+      "Country": "Israel",
+      "Study_Design (RCT/Cluster-RCT/Crossover/Prospective Cohort/Retrospective Cohort/Case-Control)": "Observational study",
+      "Oncology_Setting (Adjuvant/Neoadjuvant/Metastatic)": "Metastatic",
+      "Cancer_Type (Breast/Lymphoma/Sarcoma/Other)": "Sarcoma",
+      "Anthracycline_Exposure (Yes/No)": "Yes",
+      "Trastuzumab_Exposure (Yes/No)": "NR",
+      "Comparator (Placebo/Usual Care/Other)": "None",
+      "Sample_Size_Total": "43",
+      "Arms (N)": "2",
+      "Followup_Median (months)": "NR",
+      "Followup_IQR_or_Range": "NR",
+      "Enrollment_Years": "2018",
+      "Funding (Industry/Non-industry/Mixed)": "Academic",
+      "COI_Declared (Yes/No)": "Yes",
+      "Protocol/PROSPERO/Trial_Registration": "Registered"
+    }
+  ]
+}
+================================================================================
+
+================================================================================
+✅ SUCCESS (Attempt 1)
+Prompt (first 600 chars):
+You are a biomedical data extraction specialist. First, read the per-sheet instructions below. Then, using the criteria PDF, fill the data template. Reference PDF is 12885_2020_Article_7104.pdf.
+[OVERRIDES]
+Sheet: 2_Eligibility_Baseline
+Column guidance (fill missing only; preserve non-empty):
+- Study_ID: Extract the value for 'Study_ID' from the PDF. If missing, use 'NR'.
+- Inclusion_Criteria_Summary: Extract the value for 'Inclusion_Criteria_Summary' from the PDF. If missing, use 'NR'.
+- Exclusion_Criteria_Summary: Extract the value for 'Exclusion_Criteria_Summary' from the PDF. If missing, u
+
+Response (first 1200 chars):
+{
+  "2_Eligibility_Baseline": [
+    {
+      "Study_ID": "NR",
+      "Inclusion_Criteria_Summary": "Patients with sarcoma, regardless of baseline risk factors.",
+      "Exclusion_Criteria_Summary": "NR",
+      "Mean_Age (years)": "NR",
+      "Age_SD": "NR",
+      "Female (%)": "14%",
+      "Baseline_LVEF (%)": "NR",
+      "Baseline_GLS (%)": "NR",
+      "Hypertension (%)": "NR",
+      "Diabetes (%)": "NR",
+      "CAD (%)": "NR",
+      "HF_History (%)": "NR",
+      "CKD (%)": "NR",
+      "Smoking (%)": "NR",
+      "Anthracycline_Cumulative_Dose_mg_per_m2_Mean": "NR",
+      "Dose_SD": "NR",
+      "Planned_Anthracycline_Type (Doxorubicin/Epirubicin/Idarubicin/Daunorubicin)": "Doxorubicin",
+      "Planned_Anthracycline_Total_Dose_Category (<250/250-399/400-549/\u2265550 mg/m2)": "NR",
+      "Planned_Trastuzumab (Yes/No)": "NR",
+      "Planned_Radiation (Yes/No)": "NR",
+      "Left_Sided_Chest_RT (Yes/No)": "NR",
+      "HER2+ (%)": "NR",
+      "Anthracycline_Pretreated (Yes/No)": "NR",
+      "Cardio_Biomarkers_Baseline (hs-cTn/BNP/NT-proBNP)": "Echocardiography parameters",
+      "Concomitant_Cancer_Tx (Taxanes/Platinum/Immunotherapy/etc.)": "Chemotherapy"
+    }
+  ]
+}
+================================================================================
+
+================================================================================
+✅ SUCCESS (Attempt 1)
+Prompt (first 600 chars):
+You are a biomedical data extraction specialist. First, read the per-sheet instructions below. Then, using the criteria PDF, fill the data template. Reference PDF is 12885_2020_Article_7104.pdf.
+[OVERRIDES]
+Sheet: 3_Intervention_Cardioprotectors
+Column guidance (fill missing only; preserve non-empty):
+- Study_ID: Extract the value for 'Study_ID' from the PDF. If missing, use 'NR'.
+- Arm_Name: Extract the value for 'Arm_Name' from the PDF. If missing, use 'NR'.
+- N_in_Arm: Extract the value for 'N_in_Arm' from the PDF. If missing, use 'NR'.
+- Cardioprotector_Class (Dexrazoxane/BB/ACEi/ARB/MRA/S
+
+Response (first 1200 chars):
+{
+  "3_Intervention_Cardioprotectors": [
+    {
+      "Study_ID": "NR",
+      "Arm_Name": "NR",
+      "N_in_Arm": "NR",
+      "Cardioprotector_Class (Dexrazoxane/BB/ACEi/ARB/MRA/Statin/Others)": "Dexrazoxane",
+      "Drug_Name": "Dexrazoxane",
+      "Dose_Regimen": "Given according to our practical use protocol; including patients treated with cumulative dose of Doxorubicin more than 300mg/m2, or from lower doses in case of pre-existing reduced LVEF.",
+      "Start_Timing (Before/During/After Chemo)": "During chemo",
+      "Duration (weeks)": "NR",
+      "Adherence_Measure": "NR",
+      "Crossovers (Yes/No/Details)": "NR",
+      "Co-interventions (Exercise/Monitoring/Other)": "Routine Left ventricle (LV) echocardiographic parameters included LV diameters, and LVEF [9]. Early trans-mitral flow velocity (E), late atrial contraction (A) velocity, deceleration time and early diastolic mitral annular velocity (septal and lateral e’) were measured in the apical 4-chamber view to provide an estimate of LV diastolic function [10].",
+      "Comparator_Details": "NR"
+    }
+  ]
+}
+================================================================================
+
+================================================================================
+✅ SUCCESS (Attempt 1)
+Prompt (first 600 chars):
+You are a biomedical data extraction specialist. First, read the per-sheet instructions below. Then, using the criteria PDF, fill the data template. Reference PDF is 12885_2020_Article_7104.pdf.
+[OVERRIDES]
+Sheet: 4_Cancer_Therapy_Exposure
+Column guidance (fill missing only; preserve non-empty):
+- Study_ID: Extract the value for 'Study_ID' from the PDF. If missing, use 'NR'.
+- Arm_Name: Extract the value for 'Arm_Name' from the PDF. If missing, use 'NR'.
+- Anthracycline_Type: Extract the value for 'Anthracycline_Type' from the PDF. If missing, use 'NR'.
+- Anthracycline_Planned_Cumulative_Dose_
+
+Response (first 1200 chars):
+{
+  "4_Cancer_Therapy_Exposure": [
+    {
+      "Study_ID": "NR",
+      "Arm_Name": "NR",
+      "Anthracycline_Type": "Doxorubicin",
+      "Anthracycline_Planned_Cumulative_Dose_mg_per_m2": "NR",
+      "Anthracycline_Actual_Cumulative_Dose_mg_per_m2": "NR",
+      "Number_of_Cycles": "NR",
+      "Dose_Density_Schedule": "q21days",
+      "Trastuzumab (Yes/No)": "NR",
+      "Trastuzumab_Duration (months)": "NR",
+      "Radiation (Yes/No)": "NR",
+      "Radiation_Fields (Left breast/chest wall/mediastinum/etc.)": "NR",
+      "RT_Dose (Gy)": "NR",
+      "Other_Chemo/Targeted_Tx": "Dexrazoxane",
+      "Treatment_Interruptions_or_Dose_Reductions (Yes/No/Reason)": "NR"
+    }
+  ]
+}
+================================================================================
+
+================================================================================
+✅ SUCCESS (Attempt 1)
+Prompt (first 600 chars):
+You are a biomedical data extraction specialist. First, read the per-sheet instructions below. Then, using the criteria PDF, fill the data template. Reference PDF is 12885_2020_Article_7104.pdf.
+[OVERRIDES]
+Sheet: 5_Imaging_Protocol
+Column guidance (fill missing only; preserve non-empty):
+- Study_ID: Extract the value for 'Study_ID' from the PDF. If missing, use 'NR'.
+- Modality (Echo/CMR/MUGA): Extract the value for 'Modality (Echo/CMR/MUGA)' from the PDF. If missing, use 'NR'.
+- Imaging_CoreLab (Yes/No): Extract the value for 'Imaging_CoreLab (Yes/No)' from the PDF. If missing, use 'NR'.
+- L
+
+Response (first 1200 chars):
+{
+  "5_Imaging_Protocol": [
+    {
+      "Study_ID": "NR",
+      "Modality (Echo/CMR/MUGA)": "NR",
+      "Imaging_CoreLab (Yes/No)": "NR",
+      "LVEF_Method (Simpson/Teichholz/3D/CMR)": "NR",
+      "GLS_Method/Vendor": "NR",
+      "Measurement_Timing (Baseline/Each cycle/3m/6m/12m/>12m)": "NR",
+      "Cardiotoxicity_Definition (e.g., LVEF drop ≥10% to <53%)": "LVEF reduction of >10%, to a value below 53%",
+      "Blinded_Assessment (Yes/No)": "NR"
+    }
+  ]
+}
+================================================================================
+
+================================================================================
+✅ SUCCESS (Attempt 1)
+Prompt (first 600 chars):
+You are a biomedical data extraction specialist. First, read the per-sheet instructions below. Then, using the criteria PDF, fill the data template. Reference PDF is 12885_2020_Article_7104.pdf.
+[OVERRIDES]
+Sheet: 6_Biomarkers_Monitoring
+Column guidance (fill missing only; preserve non-empty):
+- Study_ID: Extract the value for 'Study_ID' from the PDF. If missing, use 'NR'.
+- hs-cTn Assay: Extract the value for 'hs-cTn Assay' from the PDF. If missing, use 'NR'.
+- BNP/NT-proBNP Assay: Extract the value for 'BNP/NT-proBNP Assay' from the PDF. If missing, use 'NR'.
+- Other Biomarkers (CRP, ST2, Ga
+
+Response (first 1200 chars):
+{
+  "6_Biomarkers_Monitoring": [
+    {
+      "Study_ID": "NR",
+      "hs-cTn Assay": "NR",
+      "BNP/NT-proBNP Assay": "NR",
+      "Other Biomarkers (CRP, ST2, Gal-3)": "NR",
+      "Sampling_Timing (Per cycle/Monthly/etc.)": "NR",
+      "ECG_Monitoring (QTc/Arrhythmia)": "NR",
+      "Ambulatory_BP/Other Monitoring": "NR"
+    }
+  ]
+}
+================================================================================
+
+================================================================================
+✅ SUCCESS (Attempt 1)
+Prompt (first 600 chars):
+You are a biomedical data extraction specialist. First, read the per-sheet instructions below. Then, using the criteria PDF, fill the data template. Reference PDF is 12885_2020_Article_7104.pdf.
+[OVERRIDES]
+Sheet: 7_Outcomes_Definitions
+Column guidance (fill missing only; preserve non-empty):
+- Study_ID: Extract the value for 'Study_ID' from the PDF. If missing, use 'NR'.
+- Primary_Outcome: Extract the value for 'Primary_Outcome' from the PDF. If missing, use 'NR'.
+- Primary_Outcome_Definition: Extract the value for 'Primary_Outcome_Definition' from the PDF. If missing, use 'NR'.
+- LV_Dysfunct
+
+Response (first 1200 chars):
+{
+  "7_Outcomes_Definitions": [
+    {
+      "Study_ID": "NR",
+      "Primary_Outcome": "NR",
+      "Primary_Outcome_Definition": "NR",
+      "LV_Dysfunction_Definition": "Left ventricular ejection fraction (LVEF) reduction of >10%, to a value below 53%",
+      "Symptomatic_HF_Definition": "NR",
+      "Biomarker_Elevation_Definition": "NR",
+      "MACE_Definition": "NR",
+      "All-cause_Mortality_Definition": "Retrieved from the electronic records of the governmental population.",
+      "CV_Mortality_Definition": "NR",
+      "Cancer_Outcomes (ORR/pCR/PFS/DFS/OS)": "NR",
+      "Safety_AEs_Definition (CTCAE grade)": "NR",
+      "Outcome_Adjudication (Blinded/Committee/None)": "NR"
+    }
+  ]
+}
+================================================================================
+
+================================================================================
+✅ SUCCESS (Attempt 1)
+Prompt (first 600 chars):
+You are a biomedical data extraction specialist. First, read the per-sheet instructions below. Then, using the criteria PDF, fill the data template. Reference PDF is 12885_2020_Article_7104.pdf.
+[OVERRIDES]
+Sheet: 8_Outcome_Binary
+Column guidance (fill missing only; preserve non-empty):
+- Study_ID: Extract the value for 'Study_ID' from the PDF. If missing, use 'NR'.
+- Outcome_Name (e.g., LV Dysfunction, HF, MACE, Death): Extract the value for 'Outcome_Name (e.g., LV Dysfunction, HF, MACE, Death)' from the PDF. If missing, use 'NR'.
+- Timepoint (e.g., end-chemo, 6m, 12m): Extract the value for 
+
+Response (first 1200 chars):
+{
+"8_Outcome_Binary": [
+  {
+    "Study_ID": "NR",
+    "Outcome_Name (e.g., LV Dysfunction, HF, MACE, Death)": "NR",
+    "Timepoint (e.g., end-chemo, 6m, 12m)": "NR",
+    "Arm_Name": "NR",
+    "Events": "2",
+    "Total": "43",
+    "Analysis_Set (ITT/PP/Safety)": "NR",
+    "Effect_Size_Reported (RR/OR/HR)": "NR",
+    "Adjusted (Yes/No)": "NR",
+    "Adjustment_Variables": "NR"
+  }
+]
+}
+================================================================================
+
+================================================================================
+✅ SUCCESS (Attempt 1)
+Prompt (first 600 chars):
+You are a biomedical data extraction specialist. First, read the per-sheet instructions below. Then, using the criteria PDF, fill the data template. Reference PDF is 12885_2020_Article_7104.pdf.
+[OVERRIDES]
+Sheet: 9_Outcome_Continuous
+Column guidance (fill missing only; preserve non-empty):
+- Study_ID: Extract the value for 'Study_ID' from the PDF. If missing, use 'NR'.
+- Outcome_Name (e.g., LVEF %, GLS %, Troponin, NT-proBNP): Extract the value for 'Outcome_Name (e.g., LVEF %, GLS %, Troponin, NT-proBNP)' from the PDF. If missing, use 'NR'.
+- Timepoint: Extract the value for 'Timepoint' from 
+
+Response (first 1200 chars):
+{
+  "9_Outcome_Continuous": [
+    {
+      "Study_ID": "NR",
+      "Outcome_Name (e.g., LVEF %, GLS %, Troponin, NT-proBNP)": "NR",
+      "Timepoint": "NR",
+      "Arm_Name": "NR",
+      "Mean": "NR",
+      "SD": "NR",
+      "N": "NR",
+      "Change_From_Baseline_Mean": "NR",
+      "Change_From_Baseline_SD": "NR",
+      "Imputation/Derivation_Details": "Patients were divided into 2 groups: The CTRCD group, which included all patients developing LVEF reduction of >10%, to a value below 53% and the non-CTRCD group which included all the remaining patients."
+    }
+  ]
+}
+================================================================================
+
+================================================================================
+✅ SUCCESS (Attempt 1)
+Prompt (first 600 chars):
+You are a biomedical data extraction specialist. First, read the per-sheet instructions below. Then, using the criteria PDF, fill the data template. Reference PDF is 12885_2020_Article_7104.pdf.
+[OVERRIDES]
+Sheet: 10_TimeToEvent
+Column guidance (fill missing only; preserve non-empty):
+- Study_ID: Extract the value for 'Study_ID' from the PDF. If missing, use 'NR'.
+- Outcome_Name (e.g., HF hospitalization, PFS, OS): Extract the value for 'Outcome_Name (e.g., HF hospitalization, PFS, OS)' from the PDF. If missing, use 'NR'.
+- Arm_Comparison: Extract the value for 'Arm_Comparison' from the PDF. I
+
+Response (first 1200 chars):
+{
+  "10_TimeToEvent": [
+    {
+      "Study_ID": "NR",
+      "Outcome_Name (e.g., HF hospitalization, PFS, OS)": "NR",
+      "Arm_Comparison": "NR",
+      "Effect_Size (HR)": "NR",
+      "Lower_CI": "NR",
+      "Upper_CI": "NR",
+      "P_value": "NR",
+      "Adjusted (Yes/No)": "NR",
+      "Adjustment_Variables": "NR",
+      "Extraction_Method (Direct/KM Digitized/Reported)": "NR"
+    }
+  ]
+}
+================================================================================
+
+================================================================================
+✅ SUCCESS (Attempt 1)
+Prompt (first 600 chars):
+You are a biomedical data extraction specialist. First, read the per-sheet instructions below. Then, using the criteria PDF, fill the data template. Reference PDF is 12885_2020_Article_7104.pdf.
+[OVERRIDES]
+Sheet: 11_Adverse_Events
+Column guidance (fill missing only; preserve non-empty):
+- Study_ID: Extract the value for 'Study_ID' from the PDF. If missing, use 'NR'.
+- Arm_Name: Extract the value for 'Arm_Name' from the PDF. If missing, use 'NR'.
+- AE_Name: Extract the value for 'AE_Name' from the PDF. If missing, use 'NR'.
+- Grade (CTCAE): Extract the value for 'Grade (CTCAE)' from the PDF. I
+
+Response (first 1200 chars):
+{
+  "11_Adverse_Events": [
+    {
+      "Study_ID": "NR",
+      "Arm_Name": "NR",
+      "AE_Name": "Cardio-toxicity",
+      "Grade (CTCAE)": "NR",
+      "Events": "6",
+      "Total": "43",
+      "Serious_AE (Yes/No)": "Yes",
+      "Led_to_Discontinuation (Yes/No)": "NR",
+      "Notes": "Cardio-toxicity is an important concern among patients with sarcoma, regardless of baseline risk factors."
+    }
+  ]
+}
+================================================================================
+
+================================================================================
+✅ SUCCESS (Attempt 1)
+Prompt (first 600 chars):
+You are a biomedical data extraction specialist. First, read the per-sheet instructions below. Then, using the criteria PDF, fill the data template. Reference PDF is 12885_2020_Article_7104.pdf.
+[OVERRIDES]
+Sheet: 12_Subgroups_EffectModifiers
+Column guidance (fill missing only; preserve non-empty):
+- Study_ID: Extract the value for 'Study_ID' from the PDF. If missing, use 'NR'.
+- Pre-specified_Subgroups (e.g., age, sex, baseline LVEF, dose): Extract the value for 'Pre-specified_Subgroups (e.g., age, sex, baseline LVEF, dose)' from the PDF. If missing, use 'NR'.
+- Interaction_Test_Reported (Yes
+
+Response (first 1200 chars):
+{
+    "12_Subgroups_EffectModifiers": [
+        {
+            "Study_ID": "NR",
+            "Pre-specified_Subgroups (e.g., age, sex, baseline LVEF, dose)": "NR",
+            "Interaction_Test_Reported (Yes/No)": "NR",
+            "Interaction_P_value": "NR",
+            "Direction_of_Effect": "NR",
+            "Dose-Response/Exposure-Response Findings": "Among 43 consecutive patients, 6 (14%) developed CTRCD. Baseline cardiac risk factors were more frequent among the non-CTRCD group."
+        }
+    ]
+}
+================================================================================
+
+================================================================================
+✅ SUCCESS (Attempt 1)
+Prompt (first 600 chars):
+You are a biomedical data extraction specialist. First, read the per-sheet instructions below. Then, using the criteria PDF, fill the data template. Reference PDF is 12885_2020_Article_7104.pdf.
+[OVERRIDES]
+Sheet: 13_RiskOfBias_RoB2_RCTs
+Column guidance (fill missing only; preserve non-empty):
+- Study_ID: Extract the value for 'Study_ID' from the PDF. If missing, use 'NR'.
+- D1_Randomization_Process (Low/Some Concerns/High): Extract the value for 'D1_Randomization_Process (Low/Some Concerns/High)' from the PDF. If missing, use 'NR'.
+- D1_Notes: Extract the value for 'D1_Notes' from the PDF. If
+
+Response (first 1200 chars):
+{
+  "13_RiskOfBias_RoB2_RCTs": [
+    {
+      "Study_ID": "NR",
+      "D1_Randomization_Process (Low/Some Concerns/High)": "NR",
+      "D1_Notes": "NR",
+      "D2_Deviations_from_Intended_Interventions (Low/Some Concerns/High)": "NR",
+      "D2_Notes": "NR",
+      "D3_Missing_Outcome_Data (Low/Some Concerns/High)": "NR",
+      "D3_Notes": "NR",
+      "D4_Measurement_of_Outcome (Low/Some Concerns/High)": "NR",
+      "D4_Notes": "NR",
+      "D5_Selection_of_Reported_Result (Low/Some Concerns/High)": "NR",
+      "D5_Notes": "NR",
+      "Overall_RoB (Low/Some Concerns/High)": "NR",
+      "RoB2_Supporting_Quotes": "NR"
+    }
+  ]
+}
+================================================================================
+
+================================================================================
+✅ SUCCESS (Attempt 1)
+Prompt (first 600 chars):
+You are a biomedical data extraction specialist. First, read the per-sheet instructions below. Then, using the criteria PDF, fill the data template. Reference PDF is 12885_2020_Article_7104.pdf.
+[OVERRIDES]
+Sheet: 14_RiskOfBias_ROBINSI_NRS
+Column guidance (fill missing only; preserve non-empty):
+- Study_ID: Extract the value for 'Study_ID' from the PDF. If missing, use 'NR'.
+- D1_Bias_due_to_Confounding (Low/Moderate/Serious/Critical/No Info): Extract the value for 'D1_Bias_due_to_Confounding (Low/Moderate/Serious/Critical/No Info)' from the PDF. If missing, use 'NR'.
+- D2_Bias_in_Selection_of
+
+Response (first 1200 chars):
+{
+"14_RiskOfBias_ROBINSI_NRS": [
+  {
+    "Study_ID": "NR",
+    "D1_Bias_due_to_Confounding (Low/Moderate/Serious/Critical/No Info)": "NR",
+    "D2_Bias_in_Selection_of_Participants": "NR",
+    "D3_Bias_in_Classification_of_Interventions": "NR",
+    "D4_Bias_due_to_Deviations_from_Intended_Interventions": "NR",
+    "D5_Bias_due_to_Missing_Data": "NR",
+    "D6_Bias_in_Measurement_of_Outcomes": "NR",
+    "D7_Bias_in_Selection_of_Reported_Result": "NR",
+    "Overall_RoB (Low/Moderate/Serious/Critical/No Info)": "NR",
+    "ROBINSI_Supporting_Notes": "NR"
+  }
+]
+}
+================================================================================
+
+================================================================================
+✅ SUCCESS (Attempt 1)
+Prompt (first 600 chars):
+You are a biomedical data extraction specialist. First, read the per-sheet instructions below. Then, using the criteria PDF, fill the data template. Reference PDF is 12885_2020_Article_7104.pdf.
+[OVERRIDES]
+Sheet: 15_GRADE_Per_Outcome
+Column guidance (fill missing only; preserve non-empty):
+- Outcome_Name: Extract the value for 'Outcome_Name' from the PDF. If missing, use 'NR'.
+- Population/Setting: Extract the value for 'Population/Setting' from the PDF. If missing, use 'NR'.
+- Comparator: Extract the value for 'Comparator' from the PDF. If missing, use 'NR'.
+- Study_Design (RCT/NRS/Mixed): E
+
+Response (first 1200 chars):
+{
+"15_GRADE_Per_Outcome": [
+  {
+    "Outcome_Name": "NR",
+    "Population/Setting": "NR",
+    "Comparator": "NR",
+    "Study_Design (RCT/NRS/Mixed)": "NR",
+    "Risk_of_Bias (No serious/Serious/Very serious)": "NR",
+    "Inconsistency": "NR",
+    "Indirectness": "NR",
+    "Imprecision": "NR",
+    "Publication_Bias": "NR",
+    "Large_Effect (Upgrade)": "NR",
+    "Dose_Response (Upgrade)": "NR",
+    "All_Plausible_Confounding (Upgrade)": "NR",
+    "Overall_Certainty (High/Moderate/Low/Very low)": "NR",
+    "Key_Notes": "Patients with sarcoma are commonly exposed to high doses of anthracyclines, which can lead to cardiac dysfunction. Echocardiography is the modality used most often to assess cardiac function among patients with cancer."
+  }
+]
+}
+================================================================================
+
+================================================================================
+✅ SUCCESS (Attempt 1)
+Prompt (first 600 chars):
+You are a biomedical data extraction specialist. First, read the per-sheet instructions below. Then, using the criteria PDF, fill the data template. Reference PDF is 12885_2020_Article_7104.pdf.
+[OVERRIDES]
+Sheet: 16_Derivations_Conversions
+Column guidance (fill missing only; preserve non-empty):
+- Study_ID: Extract the value for 'Study_ID' from the PDF. If missing, use 'NR'.
+- Outcome_Name: Extract the value for 'Outcome_Name' from the PDF. If missing, use 'NR'.
+- Timepoint: Extract the value for 'Timepoint' from the PDF. If missing, use 'NR'.
+- Original_Reported_Data: Extract the value for '
+
+Response (first 1200 chars):
+{
+  "16_Derivations_Conversions": [
+    {
+      "Study_ID": "NR",
+      "Outcome_Name": "CTRCD (Cancer Therapeutics Related Cardiac Dysfunction)",
+      "Timepoint": "Follow-up",
+      "Original_Reported_Data": "43 consecutive patients, 6 (14%) developed CTRCD",
+      "Derived_Metric (e.g., change SD via correlation)": "NR",
+      "Assumed_Correlation": "NR",
+      "Unit_Conversions": "NR",
+      "KM_Digitization_Details": "NR",
+      "Assumptions_Notes": "Patients with sarcoma are commonly exposed to high doses of ANT compared to other types of cancer"
+    }
+  ]
+}
+================================================================================
+
+================================================================================
+✅ SUCCESS (Attempt 1)
+Prompt (first 600 chars):
+You are a biomedical data extraction specialist. First, read the per-sheet instructions below. Then, using the criteria PDF, fill the data template. Reference PDF is 12885_2020_Article_7104.pdf.
+[OVERRIDES]
+Sheet: 17_Notes_Queries
+Column guidance (fill missing only; preserve non-empty):
+- Study_ID: Extract the value for 'Study_ID' from the PDF. If missing, use 'NR'.
+- Contacted_Authors (Yes/No): Extract the value for 'Contacted_Authors (Yes/No)' from the PDF. If missing, use 'NR'.
+- Author_Response_Summary: Extract the value for 'Author_Response_Summary' from the PDF. If missing, use 'NR'.
+- D
+
+Response (first 1200 chars):
+{
+  "17_Notes_Queries": [
+    {
+      "Study_ID": "NR",
+      "Contacted_Authors (Yes/No)": "NR",
+      "Author_Response_Summary": "The objectives of the current study were to estimate the prevalence of CTRCD in patients diagnosed with sarcoma and to describe the baseline risk factors and echocardiography parameters among that population.",
+      "Data_Discrepancies/Queries": "None reported",
+      "Resolution_Status": "NR"
+    }
+  ]
+}
+================================================================================
+
+================================================================================
+✅ SUCCESS (Attempt 1)
+Prompt (first 600 chars):
+You are a biomedical data extraction specialist. First, read the per-sheet instructions below. Then, using the criteria PDF, fill the data template. Reference PDF is 12885_2020_Article_7104.pdf.
+[OVERRIDES]
+Sheet: 18_PRISMA_Screening_Log
+Column guidance (fill missing only; preserve non-empty):
+- Record_ID: Extract the value for 'Record_ID' from the PDF. If missing, use 'NR'.
+- Database: Extract the value for 'Database' from the PDF. If missing, use 'NR'.
+- Search_Date: Extract the value for 'Search_Date' from the PDF. If missing, use 'NR'.
+- Title: Extract the value for 'Title' from the PDF. I
+
+Response (first 1200 chars):
+{
+"18_PRISMA_Screening_Log": [
+  {
+    "Record_ID": "NR",
+    "Database": "NR",
+    "Search_Date": "NR",
+    "Title": "Methods: Data were collected as part of the Israel Cardio-Oncology Registry (ICOR), enrolling all patients evaluated in the cardio-oncology clinic at our institution.",
+    "Authors": "Shamai et al.",
+    "Year": "2020",
+    "PMID/DOI": "NR",
+    "Include_at_Title/Abstract (Yes/No)": "NR",
+    "Include_at_FullText (Yes/No)": "NR",
+    "Exclude_Reason": "NR"
+  }
+]
+}
+================================================================================
+
+================================================================================
+✅ SUCCESS (Attempt 1)
+Prompt (first 600 chars):
+You are a biomedical data extraction specialist. First, read the per-sheet instructions below. Then, using the criteria PDF, fill the data template. Reference PDF is 1349-7235-59-2155.pdf.
+[OVERRIDES]
+Sheet: 1_Study_ID_Design
+Column guidance (fill missing only; preserve non-empty):
+- Study_ID (FirstAuthor_Year): Extract the value for 'Study_ID (FirstAuthor_Year)' from the PDF. If missing, use 'NR'.
+- PMID/DOI: Extract the value for 'PMID/DOI' from the PDF. If missing, use 'NR'.
+- Registry_ID: Extract the value for 'Registry_ID' from the PDF. If missing, use 'NR'.
+- Publication_Year: Extract th
+
+Response (first 1200 chars):
+{
+  "1_Study_ID_Design": [
+    {
+      "Study_ID (FirstAuthor_Year)": "Tsujinaga S, et al. 2020",
+      "PMID/DOI": "NR",
+      "Registry_ID": "NR",
+      "Publication_Year": "2020",
+      "Country": "Japan",
+      "Study_Design (RCT/Cluster-RCT/Crossover/Prospective Cohort/Retrospective Cohort/Case-Control)": "Case Report",
+      "Oncology_Setting (Adjuvant/Neoadjuvant/Metastatic)": "Metastatic",
+      "Cancer_Type (Breast/Lymphoma/Sarcoma/Other)": "Breast",
+      "Anthracycline_Exposure (Yes/No)": "Yes",
+      "Trastuzumab_Exposure (Yes/No)": "NR",
+      "Comparator (Placebo/Usual Care/Other)": "NR",
+      "Sample_Size_Total": "1",
+      "Arms (N)": "1",
+      "Followup_Median (months)": "9",
+      "Followup_IQR_or_Range": "NR",
+      "Enrollment_Years": "2020",
+      "Funding (Industry/Non-industry/Mixed)": "NR",
+      "COI_Declared (Yes/No)": "NR",
+      "Protocol/PROSPERO/Trial_Registration": "NR"
+    }
+  ]
+}
+================================================================================

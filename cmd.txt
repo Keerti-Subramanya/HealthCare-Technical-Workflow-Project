@@ -1,0 +1,30 @@
+.\venv\scripts\activate
+
+cd CardioProtect_Agent_Windows
+.\venv\Scripts\activate
+uvicorn app:app --port 8000
+
+Save and restart your FastAPI server when modidied:
+
+uvicorn app:app --reload
+uvicorn app:app --reload
+
+Optional (but recommended) — extend request timeout for large PDFs
+uvicorn app:app --host 127.0.0.1 --port 8000 --timeout-keep-alive 900
+
+
+Scenario	Command	Why
+🔧 Development / testing |	uvicorn app:app --reload --port 8000  |	Auto-reloads after each code edit
+🧠 Long extraction runs	 | uvicorn app:app --port 8000  |  Stable, prevents unwanted reloads
+🕐 Large PDF (>30 pages) with OCR |	uvicorn app:app --port 8000 --timeout-keep-alive 900  |	Keeps the connection alive up to 15 min
+🧩 Deployment / production |	uvicorn app:app --host 0.0.0.0 --port 8000 | Runs once, no reload overhead
+
+
+When testing small changes in the extraction logic (like prompt tuning, OCR tweaks, etc.), use:
+
+uvicorn app:app --reload --port 8000
+
+
+Once it works perfectly and you’re ready for full dataset extraction, switch to:
+
+uvicorn app:app --port 8000

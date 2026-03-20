@@ -1,0 +1,277 @@
+{
+  "1_Study_ID_Design": [
+    {
+      "Study_ID (FirstAuthor_Year)": "Shamai et al. 2020",
+      "PMID/DOI": "NR",
+      "Registry_ID": "NCT02818517",
+      "Publication_Year": "2020",
+      "Country": "Israel",
+      "Study_Design (RCT/Cluster-RCT/Crossover/Prospective Cohort/Retrospective Cohort/Case-Control)": "Observational study",
+      "Oncology_Setting (Adjuvant/Neoadjuvant/Metastatic)": "Metastatic",
+      "Cancer_Type (Breast/Lymphoma/Sarcoma/Other)": "Sarcoma",
+      "Anthracycline_Exposure (Yes/No)": "Yes",
+      "Trastuzumab_Exposure (Yes/No)": "NR",
+      "Comparator (Placebo/Usual Care/Other)": "null",
+      "Sample_Size_Total": "43",
+      "Arms (N)": "2",
+      "Followup_Median (months)": "NR",
+      "Followup_IQR_or_Range": "NR",
+      "Enrollment_Years": "2018",
+      "Funding (Industry/Non-industry/Mixed)": "Academic",
+      "COI_Declared (Yes/No)": "Yes",
+      "Protocol/PROSPERO/Trial_Registration": "Registered"
+    }
+  ],
+  "2_Eligibility_Baseline": [
+    {
+      "Study_ID": "NR",
+      "Inclusion_Criteria_Summary": "Patients with sarcoma evaluated in the cardio-oncology clinic at our institution.",
+      "Exclusion_Criteria_Summary": "NR",
+      "Mean_Age (years)": "NR",
+      "Age_SD": "NR",
+      "Female (%)": "14%",
+      "Baseline_LVEF (%)": "NR",
+      "Baseline_GLS (%)": "NR",
+      "Hypertension (%)": "NR",
+      "Diabetes (%)": "NR",
+      "CAD (%)": "NR",
+      "HF_History (%)": "NR",
+      "CKD (%)": "NR",
+      "Smoking (%)": "NR",
+      "Anthracycline_Cumulative_Dose_mg_per_m2_Mean": "NR",
+      "Dose_SD": "NR",
+      "Planned_Anthracycline_Type (Doxorubicin/Epirubicin/Idarubicin/Daunorubicin)": "Doxorubicin",
+      "Planned_Anthracycline_Total_Dose_Category (<250/250-399/400-549/≥550 mg/m2)": "NR",
+      "Planned_Trastuzumab (Yes/No)": "NR",
+      "Planned_Radiation (Yes/No)": "NR",
+      "Left_Sided_Chest_RT (Yes/No)": "NR",
+      "HER2+ (%)": "NR",
+      "Anthracycline_Pretreated (Yes/No)": "NR",
+      "Cardio_Biomarkers_Baseline (hs-cTn/BNP/NT-proBNP)": "Echocardiography parameters",
+      "Concomitant_Cancer_Tx (Taxanes/Platinum/Immunotherapy/etc.)": "Doxorubicin-based chemotherapy"
+    }
+  ],
+  "3_Intervention_Cardioprotectors": [
+    {
+      "Study_ID": "NR",
+      "Arm_Name": "NR",
+      "N_in_Arm": "NR",
+      "Cardioprotector_Class (Dexrazoxane/BB/ACEi/ARB/MRA/Statin/Others)": "Dexrazoxane",
+      "Drug_Name": "Dexrazoxane",
+      "Dose_Regimen": "300",
+      "Start_Timing (Before/During/After Chemo)": "During chemo",
+      "Duration (weeks)": "NR",
+      "Adherence_Measure": "NR",
+      "Crossovers (Yes/No/Details)": "NR",
+      "Co-interventions (Exercise/Monitoring/Other)": "Routine Left ventricle (LV) echocardiographic parameters included LV diameters, and LVEF [9]. Early trans-mitral flow velocity (E), late atrial contraction (A) velocity, deceleration time and early diastolic mitral annular velocity (septal and lateral e’) were measured in the apical 4-chamber view to provide an estimate of LV diastolic function [10].",
+      "Comparator_Details": "NR"
+    }
+  ],
+  "4_Cancer_Therapy_Exposure": [
+    {
+      "Study_ID": "NR",
+      "Arm_Name": "NR",
+      "Anthracycline_Type": "Doxorubicin",
+      "Anthracycline_Planned_Cumulative_Dose_mg_per_m2": "NR",
+      "Anthracycline_Actual_Cumulative_Dose_mg_per_m2": "NR",
+      "Number_of_Cycles": "NR",
+      "Dose_Density_Schedule": "21",
+      "Trastuzumab (Yes/No)": "NR",
+      "Trastuzumab_Duration (months)": "NR",
+      "Radiation (Yes/No)": "NR",
+      "Radiation_Fields (Left breast/chest wall/mediastinum/etc.)": "NR",
+      "RT_Dose (Gy)": "NR",
+      "Other_Chemo/Targeted_Tx": "Dexrazoxane",
+      "Treatment_Interruptions_or_Dose_Reductions (Yes/No/Reason)": "NR"
+    }
+  ],
+  "5_Imaging_Protocol": [
+    {
+      "Study_ID": "NR",
+      "Modality (Echo/CMR/MUGA)": "NR",
+      "Imaging_CoreLab (Yes/No)": "NR",
+      "LVEF_Method (Simpson/Teichholz/3D/CMR)": "NR",
+      "GLS_Method/Vendor": "NR",
+      "Measurement_Timing (Baseline/Each cycle/3m/6m/12m/>12m)": "NR",
+      "Cardiotoxicity_Definition (e.g., LVEF drop ≥10% to <53%)": "LVEF reduction of >10%, to a value below 53%",
+      "Blinded_Assessment (Yes/No)": "NR"
+    }
+  ],
+  "6_Biomarkers_Monitoring": [
+    {
+      "Study_ID": "NR",
+      "hs-cTn Assay": "NR",
+      "BNP/NT-proBNP Assay": "NR",
+      "Other Biomarkers (CRP, ST2, Gal-3)": "NR",
+      "Sampling_Timing (Per cycle/Monthly/etc.)": "NR",
+      "ECG_Monitoring (QTc/Arrhythmia)": "NR",
+      "Ambulatory_BP/Other Monitoring": "NR"
+    }
+  ],
+  "7_Outcomes_Definitions": [
+    {
+      "Study_ID": "NR",
+      "Primary_Outcome": "NR",
+      "Primary_Outcome_Definition": "NR",
+      "LV_Dysfunction_Definition": "Left ventricular ejection fraction (LVEF) reduction of >10%, to a value below 53%",
+      "Symptomatic_HF_Definition": "NR",
+      "Biomarker_Elevation_Definition": "NR",
+      "MACE_Definition": "NR",
+      "All-cause_Mortality_Definition": "Retrieved from the electronic records of the governmental population.",
+      "CV_Mortality_Definition": "NR",
+      "Cancer_Outcomes (ORR/pCR/PFS/DFS/OS)": "NR",
+      "Safety_AEs_Definition (CTCAE grade)": "Given according to our practical use protocol; including patients treated with cumulative dose of Doxorubicin more than 300mg/m2, or from lower doses in case of pre-existing reduced LVEF.",
+      "Outcome_Adjudication (Blinded/Committee/None)": "NR"
+    }
+  ],
+  "8_Outcome_Binary": [
+    {
+      "Study_ID": "NR",
+      "Outcome_Name (e.g., LV Dysfunction, HF, MACE, Death)": "Death",
+      "Timepoint (e.g., end-chemo, 6m, 12m)": "Follow-up",
+      "Arm_Name": "NR",
+      "Events": "2 (33%) patients died in the CTRCD group vs. 3 (8.1%) patients in the non-CTRCD group",
+      "Total": "43 consecutive patients",
+      "Analysis_Set (ITT/PP/Safety)": "Population used for analysis",
+      "Effect_Size_Reported (RR/OR/HR)": "NR",
+      "Adjusted (Yes/No)": "NR",
+      "Adjustment_Variables": "NR"
+    }
+  ],
+  "9_Outcome_Continuous": [
+    {
+      "Study_ID": "NR",
+      "Outcome_Name (e.g., LVEF %, GLS %, Troponin, NT-proBNP)": "Elevated leftventricular end systolic diameter and reduced Global Longitudinal Strain",
+      "Timepoint": "Follow-up",
+      "Arm_Name": "NR",
+      "Mean": "NR",
+      "SD": "NR",
+      "N": "43",
+      "Change_From_Baseline_Mean": "NR",
+      "Change_From_Baseline_SD": "NR",
+      "Imputation/Derivation_Details": "Echocardiography parameters may provide an early diagnosis of cardio-toxicity"
+    }
+  ],
+  "10_TimeToEvent": [
+    {
+      "Study_ID": "NR",
+      "Outcome_Name (e.g., HF hospitalization, PFS, OS)": "NR",
+      "Arm_Comparison": "NR",
+      "Effect_Size (HR)": "NR",
+      "Lower_CI": "NR",
+      "Upper_CI": "NR",
+      "P_value": "NR",
+      "Adjusted (Yes/No)": "NR",
+      "Adjustment_Variables": "NR",
+      "Extraction_Method (Direct/KM Digitized/Reported)": "NR"
+    }
+  ],
+  "11_Adverse_Events": [
+    {
+      "Study_ID": "NR",
+      "Arm_Name": "NR",
+      "AE_Name": "Cardio-toxicity",
+      "Grade (CTCAE)": "NR",
+      "Events": "6",
+      "Total": "43",
+      "Serious_AE (Yes/No)": "Yes",
+      "Led_to_Discontinuation (Yes/No)": "NR",
+      "Notes": "Cardio-toxicity among patients with sarcoma"
+    }
+  ],
+  "12_Subgroups_EffectModifiers": [
+    {
+      "Study_ID": "NR",
+      "Pre-specified_Subgroups (e.g., age, sex, baseline LVEF, dose)": "NR",
+      "Interaction_Test_Reported (Yes/No)": "NR",
+      "Interaction_P_value": "NR",
+      "Direction_of_Effect": "CTRCD is an important concern among patients with sarcoma, regardless of baseline risk factors.",
+      "Dose-Response/Exposure-Response Findings": "Among 43 consecutive patients, 6 (14%) developed CTRCD. Baseline cardiac risk factors were more frequent among the non-CTRCD group."
+    }
+  ],
+  "13_RiskOfBias_RoB2_RCTs": [
+    {
+      "Study_ID": "NR",
+      "D1_Randomization_Process (Low/Some Concerns/High)": "NR",
+      "D1_Notes": "Patients were enrolled and divided into two groups - CTRCD group vs. non-CTRCD group.",
+      "D2_Deviations_from_Intended_Interventions (Low/Some Concerns/High)": "NR",
+      "D2_Notes": "NR",
+      "D3_Missing_Outcome_Data (Low/Some Concerns/High)": "NR",
+      "D3_Notes": "NR",
+      "D4_Measurement_of_Outcome (Low/Some Concerns/High)": "NR",
+      "D4_Notes": "Echocardiography is the modality used most often to assess cardiac function among patients with cancer.",
+      "D5_Selection_of_Reported_Result (Low/Some Concerns/High)": "NR",
+      "D5_Notes": "NR",
+      "Overall_RoB (Low/Some Concerns/High)": "NR",
+      "RoB2_Supporting_Quotes": "The registry was approved by the local ethics committee and is registered in clinicaltrials.gov (Identifier: NCT02818517)."
+    }
+  ],
+  "14_RiskOfBias_ROBINSI_NRS": [
+    {
+      "Study_ID": "NR",
+      "D1_Bias_due_to_Confounding (Low/Moderate/Serious/Critical/No Info)": "NR",
+      "D2_Bias_in_Selection_of_Participants": "NR",
+      "D3_Bias_in_Classification_of_Interventions": "NR",
+      "D4_Bias_due_to_Deviations_from_Intended_Interventions": "NR",
+      "D5_Bias_due_to_Missing_Data": "NR",
+      "D6_Bias_in_Measurement_of_Outcomes": "NR",
+      "D7_Bias_in_Selection_of_Reported_Result": "NR",
+      "Overall_RoB (Low/Moderate/Serious/Critical/No Info)": "NR",
+      "ROBINSI_Supporting_Notes": "NR"
+    }
+  ],
+  "15_GRADE_Per_Outcome": [
+    {
+      "Outcome_Name": "NR",
+      "Population/Setting": "NR",
+      "Comparator": "NR",
+      "Study_Design (RCT/NRS/Mixed)": "NR",
+      "Risk_of_Bias (No serious/Serious/Very serious)": "NR",
+      "Inconsistency": "NR",
+      "Indirectness": "NR",
+      "Imprecision": "NR",
+      "Publication_Bias": "NR",
+      "Large_Effect (Upgrade)": "NR",
+      "Dose_Response (Upgrade)": "NR",
+      "All_Plausible_Confounding (Upgrade)": "NR",
+      "Overall_Certainty (High/Moderate/Low/Very low)": "NR",
+      "Key_Notes": "Patients with sarcoma are commonly exposed to high doses of anthracyclines, which can lead to cardio-toxicity. Echocardiography is the modality used most often to assess cardiac function among patients with cancer."
+    }
+  ],
+  "16_Derivations_Conversions": [
+    {
+      "Study_ID": "NR",
+      "Outcome_Name": "Prevalence of CTRCD in patients diagnosed with sarcoma",
+      "Timepoint": "Follow-up",
+      "Original_Reported_Data": "6 (14%) developed CTRCD among 43 consecutive patients",
+      "Derived_Metric (e.g., change SD via correlation)": "NR",
+      "Assumed_Correlation": "NR",
+      "Unit_Conversions": "NR",
+      "KM_Digitization_Details": "NR",
+      "Assumptions_Notes": "Patients with sarcoma are commonly exposed to high doses of ANT"
+    }
+  ],
+  "17_Notes_Queries": [
+    {
+      "Study_ID": "NR",
+      "Contacted_Authors (Yes/No)": "NR",
+      "Author_Response_Summary": "The objectives of the current study were to estimate the prevalence of CTRCD in patients diagnosed with sarcoma and to describe the baseline risk factors and echocardiography parameters among that population.",
+      "Data_Discrepancies/Queries": "null reported",
+      "Resolution_Status": "NR"
+    }
+  ],
+  "18_PRISMA_Screening_Log": [
+    {
+      "Record_ID": "NR",
+      "Database": "NR",
+      "Search_Date": "NR",
+      "Title": "CardioProtect meta-analysis project: Estimating the prevalence of cancer therapeutics-related cardiac dysfunction in patients with sarcoma.",
+      "Authors": "Shamai, et al.",
+      "Year": "2020",
+      "PMID/DOI": "NR",
+      "Include_at_Title/Abstract (Yes/No)": "NR",
+      "Include_at_FullText (Yes/No)": "NR",
+      "Exclude_Reason": "NR"
+    }
+  ]
+}
