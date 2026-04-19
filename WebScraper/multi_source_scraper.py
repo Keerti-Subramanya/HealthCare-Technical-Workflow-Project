@@ -4785,7 +4785,7 @@ XLSX_OUTPUT = "scraper_results.xlsx"
 MERGE_REPORT_FILE = "merge_report.txt"
 VALIDATION_REPORT_FILE = "validation_report.txt"
 
-PUBMED_API_KEY = "c2f307fc5acc4197325e5d9234ff271aa608"
+PUBMED_API_KEY = "Your api key"
 CROSSREF_EMAIL = CONTACT_EMAIL
 PUBMED_RATE_LIMIT = 1.0
 
